@@ -1,6 +1,6 @@
 # Pojistovna
 Aplikace pro evidenci pojištění
-Zadání:
+zadání:
 
 Aplikace obsahuje správu pojištěných (to jsou pojištěné osoby, např. "Jan Novák"):
 Vytvoření pojištěného
