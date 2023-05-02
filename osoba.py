@@ -10,7 +10,7 @@ class Osoba:
         Osoba.dalsi_id += 1
 
     def __str__(self):
-        return "{0}\t{1}\t{2}\t{3}".format(self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)
+        return "{0}\t{1}\t{2}\t{3}\t{4}".format(self.id, self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)
     
     def vypis_osobu(self):
-        return "{0}\t{1}\t{2}\t{3}".format(self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)
+        return "{0}\t{1}\t{2}\t{3}\t{4}".format(self.id, self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)

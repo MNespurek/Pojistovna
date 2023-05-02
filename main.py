@@ -35,14 +35,12 @@ while volba != "4":
     elif volba == "4":
         pass
     elif volba == "5":
-        jmeno = input("Zadejte jméno osoby:\n")
-        prijmeni = input("Zadejte přijmení:\n")
-        print(pojistenci.vymaz_pojistnika(jmeno, prijmeni))
+        vymaz_id = int(input("Zadejte ID osoby:\n"))
+        print(pojistenci.vymaz_pojistnika(vymaz_id))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     elif volba == "6":
-        jmeno = input("Zadejte jméno osoby:\n")
-        prijmeni = input("Zadejte přijmení:\n")
-        print(pojistenci.edituj_pojistnika(jmeno, prijmeni))
+        editace_id = int(input("Zadejte ID osoby:\n"))
+        print(pojistenci.edituj_pojistnika(editace_id))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
   
     else:
