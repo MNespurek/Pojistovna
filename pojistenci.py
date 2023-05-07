@@ -1,16 +1,28 @@
 from osoba import Osoba
+
 class Pojistenci():
-    
   
-   
     seznam_pojistencu = []
+    
 
-
-  
     def pridej_pojistnika(self, jmeno, prijmeni, telefonni_cislo, vek):
         osoba = Osoba(jmeno, prijmeni, telefonni_cislo, vek)
         return self.seznam_pojistencu.append(osoba)
-    
+
+    def pridej_pojisteni_pojistnika(self, zadane_id, nazev, castka, predmet, platnost_od, platnost_do):
+        for osoba in self.seznam_pojistencu:
+            if osoba.id == int(zadane_id):
+                return osoba.pridej_pojisteni(nazev, castka, predmet, platnost_od, platnost_do)
+        else:
+            print("Zadané ID nebylo nalezeno")    
+
+    def vypis_pojisteni_pojistnika(self, zadane_id):
+        for osoba in self.seznam_pojistencu:
+            if osoba.id == int(zadane_id):
+                return osoba.vypis_pojisteni()
+        else:
+            print("Zadané ID nebylo nalezeno")    
+
     def vypis_pojistnika(self):
         vypis_pojistencu = ""
         for osoba in self.seznam_pojistencu:
@@ -23,8 +35,6 @@ class Pojistenci():
             if osoba.jmeno == jmeno and osoba.prijmeni == prijmeni:
                 hledany_pojistenec = hledany_pojistenec + "\n" + osoba.vypis_osobu()
         return hledany_pojistenec
-            
-        
             
     def vymaz_pojistnika(self, vymaz_id):
         for osoba in self.seznam_pojistencu:
@@ -43,15 +53,3 @@ class Pojistenci():
                 return "Jméno a příjmení osoby bylo úspěšně aktualizováno"
         else:
             return "Zadané ID nebylo nalezeno"
-
-    # def edituj_pojistnika(self, jmeno, prijmeni):
-    #     for osoba in self.seznam_pojistencu:
-    #         if osoba.jmeno == jmeno and osoba.prijmeni == prijmeni:
-    #             osoba.jmeno = input("Zadejte nové jméno pojištěného\n")
-    #             osoba.prijmeni = input("Zadejte nové příjmení pojištěného\n")
-    #             return f"osoba s ID: {osoba.id} byla editována"
-    #     else:
-    #         return "Zadaná osoba nebyla nalezena"        
-        
-
-            

@@ -1,4 +1,4 @@
-
+import sqlite3
 from pojistenci import Pojistenci
 
 
@@ -16,6 +16,8 @@ while volba != "4":
     print("4 - Konec")
     print("5 - Vymaž pojistěného")
     print("6 - Edituj pojištěného")
+    print("7 - Přidej pojištění")
+    print("8 - Vypiš seznam pojištění pojištěného")
     volba = input()
     if volba == "1":
         jmeno = input("Zadejte jméno pojištěného\n")
@@ -42,7 +44,20 @@ while volba != "4":
         editace_id = int(input("Zadejte ID osoby:\n"))
         print(pojistenci.edituj_pojistnika(editace_id))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
-  
+    elif volba == "7":
+        zadane_id = int(input("Zadejte ID osoby, které chcete přidat pojištění:\n"))
+        nazev = input("Zadejte název pojištění\n")
+        castka = int(input("Zadejte částku\n"))
+        predmet = input("Zadejte předmět pojištění\n")
+        platnost_od = input("Zadejte platnost od\n")
+        platnost_do = input("Zadejte platnost do\n")
+        print(pojistenci.pridej_pojisteni_pojistnika(zadane_id, nazev, castka, predmet, platnost_od, platnost_do))
+        klavesa = input("\nPokračujte libovolnou klávesou...\n")
+    
+    elif volba == "8":
+        zadane_id = int(input("Zadejte ID osoby, které chcete vypsat pojištění:\n"))
+        print(pojistenci.vypis_pojisteni_pojistnika(zadane_id))
+        klavesa = input("\nPokračujte libovolnou klávesou...\n")
     else:
         print("Zadaná volba není možná")
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
