@@ -1,8 +1,11 @@
-import sqlite3
+from databaze import Databaze
 from pojistenci import Pojistenci
 
 
 pojistenci = Pojistenci()
+databaze_pojistovna = Databaze('databaze_pojistovna')
+databaze_pojistovna.vytvor_tabulku()
+
 
 volba = ""
 while volba != "4":
@@ -24,25 +27,24 @@ while volba != "4":
         prijmeni = input("Zadejte příjmení\n")
         telefonni_cislo = input("Zadejte telefonní číslo\n")
         vek = input("Zadejte věk\n")
-        pojistenci.pridej_pojistnika(jmeno, prijmeni, telefonni_cislo, vek)
+        pojistenci.vytvor_uloz_pojistnika(jmeno, prijmeni, telefonni_cislo, vek, databaze_pojistovna)
         klavesa = input("\nData byla uložena. Pokračujte libovolnou klávesou...\n")
     elif volba == "2":
-        print(pojistenci.vypis_pojistnika())
+        print(pojistenci.vypis_vsech_pojistniku(databaze_pojistovna))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     elif volba == "3":
-        jmeno = input("Zadejte jméno osoby:\n")
-        prijmeni = input("Zadejte přijmení:\n")
-        print(pojistenci.hledej_pojistnika(jmeno, prijmeni))
+        hledej_id = int(input("Zadejte ID hledané osoby:\n"))
+        print(pojistenci.hledej_pojistnika(hledej_id, databaze_pojistovna))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     elif volba == "4":
         pass
     elif volba == "5":
         vymaz_id = int(input("Zadejte ID osoby:\n"))
-        print(pojistenci.vymaz_pojistnika(vymaz_id))
+        print(pojistenci.vymaz_pojistnika(vymaz_id, databaze_pojistovna))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     elif volba == "6":
         editace_id = int(input("Zadejte ID osoby:\n"))
-        print(pojistenci.edituj_pojistnika(editace_id))
+        print(pojistenci.edituj_pojistnika(editace_id, databaze_pojistovna))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     elif volba == "7":
         zadane_id = int(input("Zadejte ID osoby, které chcete přidat pojištění:\n"))
@@ -51,7 +53,7 @@ while volba != "4":
         predmet = input("Zadejte předmět pojištění\n")
         platnost_od = input("Zadejte platnost od\n")
         platnost_do = input("Zadejte platnost do\n")
-        print(pojistenci.pridej_pojisteni_pojistnika(zadane_id, nazev, castka, predmet, platnost_od, platnost_do))
+        print(pojistenci.pridej_pojisteni_pojistnika(zadane_id, nazev, castka, predmet, platnost_od, platnost_do, databaze_pojistovna))
         klavesa = input("\nPokračujte libovolnou klávesou...\n")
     
     elif volba == "8":

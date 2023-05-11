@@ -11,7 +11,7 @@ class Pojisteni:
         Pojisteni.dalsi_id += 1
 
     def __str__(self):
-        return "{0}\t{1}\t{2}\t{3}\t{4}\t{5}".format(self.id, self.nazev, self.castka, self.predmet, self.platnost_do, self.platnost_od)
+        return "{0}\t{1}\t{2}\t{3}\t{4}\t{5}".format(self.id, self.nazev, self.castka, self.predmet, self.platnost_od, self.platnost_do)
 
 
     def vrat_nazev_pojisteni(self):

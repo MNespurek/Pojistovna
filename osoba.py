@@ -1,3 +1,4 @@
+
 from pojisteni import Pojisteni
 class Osoba:
     dalsi_id = 1
@@ -11,15 +12,17 @@ class Osoba:
         self.id = Osoba.dalsi_id
         Osoba.dalsi_id += 1
 
+
+
     def __str__(self):
         return "{0}\t{1}\t{2}\t{3}\t{4}".format(self.id, self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)
     
     def vypis_osobu(self):
         return "{0}\t{1}\t{2}\t{3}\t{4}".format(self.id, self.jmeno, self.prijmeni, self.telefonni_cislo, self.vek)
     
-    def pridej_pojisteni(self, nazev, castka, predmet, platnost_od, platnost_do):
-        pojisteni = Pojisteni(nazev, castka, predmet, platnost_od, platnost_do)
-        self.seznam_pojisteni.append(pojisteni)
+    # def pridej_pojisteni(self, nazev, castka, predmet, platnost_od, platnost_do):
+        # pojisteni = Pojisteni(nazev, castka, predmet, platnost_od, platnost_do)
+        # self.seznam_pojisteni.append(pojisteni)
         
     
     def vypis_pojisteni(self):
