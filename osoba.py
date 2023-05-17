@@ -1,16 +1,14 @@
 
 from pojisteni import Pojisteni
 class Osoba:
-    dalsi_id = 1
+
     
     def __init__(self, jmeno, prijmeni, telefonni_cislo, vek):
         self.jmeno = jmeno
         self.prijmeni = prijmeni
         self.telefonni_cislo = telefonni_cislo
         self.vek = vek
-        self.seznam_pojisteni = []
-        self.id = Osoba.dalsi_id
-        Osoba.dalsi_id += 1
+        
 
 
 
