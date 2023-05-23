@@ -1,0 +1,94 @@
+header {
+    height: 150px;
+
+    background: grey;
+    font-size: 1.5em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+h1 {
+    font-family: Arial;
+    color: rgb(45, 45, 124);
+}
+
+h4 {
+    font-family: Arial;
+    color: rgb(45, 45, 124)
+}
+
+ul {
+    color: blue;
+}
+.navigace {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    margin-left: 30px;
+
+}
+
+.navigace a {
+    text-decoration: none;
+    list-style-type: none;
+    color: white;
+
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 40px;
+    justify-content: space-evenly;
+  
+}
+nav ul a {
+    text-decoration: none;
+      
+}
+
+.registrace {
+    display: flex;
+    gap: 10px;
+    
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+}    
+
+
+article {
+    background-color: white;
+    
+    margin-left: 10px;
+  
+}
+
+.foto {
+        float: right;
+        margin-top: 80px;
+        margin-left: 150px;
+        width: 600px;
+        
+}
+.cistic {
+    clear: both;
+}
+.footer {
+    
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: grey;
+    height: 500px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+}
