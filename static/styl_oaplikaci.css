@@ -1,6 +1,6 @@
 header {
     height: 150px;
-    width: 100%;
+
     background: grey;
     font-size: 1.5em;
     color: white;
@@ -9,6 +9,7 @@ header {
     justify-content: space-between;
     margin: 0px;
 }
+
 h1 {
     font-family: Arial;
     color: rgb(45, 45, 124);
@@ -52,19 +53,30 @@ nav ul a {
 .registrace {
     display: flex;
     gap: 10px;
+    
     text-decoration: none;
     color: white;
-    margin-right: 30px;
+    margin-right: 10px;
 }    
 
 
 article {
     background-color: white;
-    width: 100%;
+    
     margin-left: 10px;
   
 }
 
+.foto {
+        float: right;
+        margin-top: 80px;
+        margin-left: 150px;
+        width: 600px;
+        
+}
+.cistic {
+    clear: both;
+}
 .footer {
     
     color: white;
@@ -73,53 +85,10 @@ article {
     justify-content: center;
     gap: 5px;
     background-color: grey;
-    height: 100px;
+    height: 500px;
 }
 
 body {
     padding: 0px;
     margin: 0px;
-}
-.select {
-    width: 400px;
-    height: 30px;
-    margin: 0px;
-    
-}
-.tabulka_pojisteni {
-    width: 400px;
-    
-}
-.zarovnani {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    width: 400px;
-}
-
-.mezera0 {
-    margin: 5px;
-    
-}
-.label {
-    height: 25px;
-    width: 150px;
-    box-shadow:  0 0 5px 2px lightgray;
-    border-radius: 5px;
-
-}
-.h4 {
-    
-    font-family: Arial;
-    color: white;
-    width: max-content;    
-    background: blue;
-    margin-bottom: 15px;
-    padding: 10px 25px 10px 25px;
-    border-radius: 15px;
-}
-.stred {
-    display: flex;
-    justify-content: center;
-    
 }

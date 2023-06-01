@@ -31,20 +31,20 @@
                 <table>
                 <thead>
                     <tr>
-                        <th colspan="2" class = "udaje">Jan Novák</th>
+                        <th colspan="2" class = "udaje">{{ pojistenec.jmeno }} {{ pojistenec.prijmeni }}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class = "udaje">
-                    <td class = "udaje">Ve svahu 3</td>
-                    <td class = "udaje">jannovak88@seznam.cz</td>
+                    <td class = "udaje">{{ pojistenec.ulice }}</td>
+                    <td class = "udaje">{{ pojistenec.email }}</td>
                 </tr>
                 <tr class = "udaje">
-                    <td class = "udaje">Praha 1</td>
-                    <td class = "udaje">777 777 777</td>
+                    <td class = "udaje">{{ pojistenec.mesto }}</td>
+                    <td class = "udaje">{{ pojistenec.telefon }}</td>
                 </tr class = "udaje">
                 <tr class = "udaje">    
-                    <td colspan = "2" class = "udaje">110 00</td>
+                    <td colspan = "2" class = "udaje">{{ pojistenec.psc }}</td>
                 </tr>
             </tbody>
             </table>

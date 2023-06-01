@@ -5,7 +5,7 @@
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_novy_pojistenec.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nový pojištěnec</title>
+    <title>Editace pojištěnce</title>
 </head>
 <body>
     <header>
@@ -24,41 +24,41 @@
             <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
     </header>
     <article>
-        <h1>Nový pojištěnec</h1>
+        <h1>Editace pojištěnce</h1>
             <p></p>
-        
-        <form action="/add" method="POST" class = "ulozit">
+            
+        <form action="/ulozit_editaci/{{ pojistenec }}" method="POST" class = "ulozit">
             <div class = "zarovnani">
                 <div>
                     <label for="jmeno">Jméno</label>
                     <p class = "mezera0"></p>
-                    <input type="text" id = "jmeno" name = "jmeno" placeholder = "Jméno" class = "label">
+                    <input type="text" id = "jmeno" class = "label" name = "jmeno" value =" {{pojistenec.jmeno}} " requiered>
                     <p></p>
                     <label for="email">Email</label>
                     <p class = "mezera0"></p>
-                    <input type="email" id = "email" name = "email" placeholder="Email" class = "label">
+                    <input type="email" id = "email" name = "email" value = "{{pojistenec.email}}" requiered placeholder="Email" class = "label">
                     <p></p>
                     <label for="ulice">Ulice a číslo popisné</label>
                     <p class  = "mezera0"></p>
-                    <input type="text" id = "ulice" name = "ulice" placeholder = "Ulice" class = "label">
+                    <input type="text" id = "ulice" name = "ulice" value = "{{pojistenec.ulice}}" placeholder = "Ulice" class = "label">
                 </div>       
             
                 <div>
                     <label for="prijmeni">Příjmení</label>
                     <p class  = "mezera0"></p>
-                    <input type="text" id = "prijmeni" name = "prijmeni" placeholder="Příjmení" class = "label">
+                    <input type="text" id = "prijmeni" name = "prijmeni" value = "{{pojistenec.prijmeni}}" placeholder="Příjmení" class = "label">
                     <p></p>
                     <label for="telefon">Telefon</label>
                     <p class  = "mezera0"></p>
-                    <input type="telefon" id = "telefon" name = "telefon" placeholder="Telefon" class = "label">
+                    <input type="telefon" id = "telefon" name = "telefon" value = "{{pojistenec.telefon}}" placeholder="Telefon" class = "label">
                     <p></p>
                     <label for="mesto">Město</label>
                     <p class  = "mezera0"></p>
-                    <input type="text" id = "mesto" name = "mesto" placeholder = "Město" class = "label">
+                    <input type="text" id = "mesto" name = "mesto" value = "{{pojistenec.mesto}}"placeholder = "Město" class = "label">
                     <p></p>
                     <label for="psc">PSČ</label>
                     <p class  = "mezera0"></p>
-                    <input type="text" id = "psc" name = "psc" placeholder = "PSČ" class = "label">
+                    <input type="text" id = "psc" name = "psc" value = "{{pojistenec.psc}}"placeholder = "PSČ" class = "label">
                 </div>
             </div>
             <div class = "stred">

@@ -86,6 +86,10 @@ body {
     margin: 0px;
     
 }
+
+.mezera0 {
+    margin: 1px
+}
 .tabulka_pojisteni {
     width: 400px;
     
@@ -96,11 +100,6 @@ body {
     margin-bottom: 20px;
     width: 400px;
 }
-
-.mezera0 {
-    margin: 5px;
-    
-}
 .label {
     height: 25px;
     width: 150px;
@@ -108,13 +107,11 @@ body {
     border-radius: 5px;
 
 }
-.h4 {
-    
+h4 {
     font-family: Arial;
     color: white;
     width: max-content;    
     background: blue;
-    margin-bottom: 15px;
     padding: 10px 25px 10px 25px;
     border-radius: 15px;
 }

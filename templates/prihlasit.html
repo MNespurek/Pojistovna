@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_pojistenci.css')}}" type = "text/css" />
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_prihlasit.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pojištěnci</title>
+    <title>Přihlášení</title>
 </head>
 <body>
     <header>
@@ -24,36 +24,31 @@
             <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
     </header>
     <article>
-        <h1>Pojištěnci</h1>
+        <h1>Přihlášení - připravujeme</h1>
+            <p></p>
         <div class = "zarovnani">
-            <h4><a href = "{{ url_for('novy_pojistenec') }}">Nový pojištěnec</a></h4>
+        <form>
+            <label for="fname">Jméno</label>
+            <p class  = "mezera0"></p>
+            <input type="text" id = "fname" name = "fname" class = "label">
+            <p></p>
+            <label for="fname">Email</label>
+            <p class  = "mezera0"></p>
+            <input type="text" id = "fname" name = "fname" class = "label">
+        </form>
+        <form>
+            <label for="fname">Příjmení</label>
+            <p class  = "mezera0"></p>
+            <input type="text" id = "fname" name = "fname" class = "label">
+            <p></p>
+            <label for="fname">Heslo</label>
+            <p class  = "mezera0"></p>
+            <input type="text" id = "fname" name = "fname" class = "label">
+        </form>
         </div>
-        <div class = "zarovnani">
-            <table border = "1">
-            <thead>
-                <tr>
-                    <th>Jméno</th>
-                    <th>Bydliště</th>
-                    <th>Možnost</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for pojistenec in data %}
-                <tr>
-                    <td><a href="/pojistenec/{{ pojistenec[0] }}">{{ pojistenec[1] }} {{ pojistenec[2] }}</a></td>
-                    <td>{{ pojistenec[6] }}</td>
-                    
-                    <td><a href="/editovat/{{ pojistenec[0] }}" class = "editovat">Editovat</a> <a href="/smazani/{{ pojistenec[0] }}" class = "odstranit">Odstranit</a></td>
-                </tr>
-                
-
-                {% endfor %}
-
-            </tbody>
-        </table>
-        </div>
+        </section>
+        <div class = "stred"><h4>Uložit</h4></div>
     </article>
-
     <footer class = "footer">
         Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
     </footer>
