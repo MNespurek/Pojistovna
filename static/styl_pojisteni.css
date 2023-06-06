@@ -116,3 +116,18 @@ h4 {
     padding: 10px 25px 10px 25px;
     border-radius: 15px;
 }
+.h4 {
+    
+    font-family: Arial;
+    color: white;
+    width: max-content;    
+    background: blue;
+    margin-bottom: 15px;
+    padding: 10px 25px 10px 25px;
+    border-radius: 15px;
+}
+.stred {
+    display: flex;
+    justify-content: center;
+    
+}

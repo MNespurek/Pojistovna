@@ -10,7 +10,7 @@ class Osoba:
         self.mesto = mesto
         self.psc = psc
 
-class Osoba_id:
+class OsobaId:
     def __init__(self, id_pojistenec, jmeno, prijmeni, ulice, email, telefon, mesto, psc):
         self.id_pojistenec = id_pojistenec
         self.jmeno = jmeno
@@ -20,3 +20,10 @@ class Osoba_id:
         self.telefon = telefon
         self.mesto = mesto
         self.psc = psc
+
+class OsobaVypis:
+    def __init__(self, id_pojistenec, jmeno, prijmeni, mesto):
+        self.id_pojistenec = id_pojistenec
+        self.jmeno = jmeno
+        self.prijmeni = prijmeni
+        self.mesto = mesto

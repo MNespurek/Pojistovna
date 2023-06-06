@@ -29,6 +29,7 @@
             <h4><a href = "{{ url_for('novy_pojistenec') }}">Nový pojištěnec</a></h4>
         </div>
         <div class = "zarovnani">
+                 
             <table border = "1">
             <thead>
                 <tr>
@@ -38,12 +39,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for pojistenec in data %}
+                {% for pojistenec in seznam_pojistencu %}
                 <tr>
-                    <td><a href="/pojistenec/{{ pojistenec[0] }}">{{ pojistenec[1] }} {{ pojistenec[2] }}</a></td>
-                    <td>{{ pojistenec[6] }}</td>
                     
-                    <td><a href="/editovat/{{ pojistenec[0] }}" class = "editovat">Editovat</a> <a href="/smazani/{{ pojistenec[0] }}" class = "odstranit">Odstranit</a></td>
+                    <td><a href="{{ url_for('pojistenec', id_pojistenec = pojistenec.id_pojistenec) }}">{{ pojistenec.jmeno}} {{ pojistenec.prijmeni }}</a></td>
+                    <td>{{ pojistenec.mesto }}</td>
+                    
+                    <td><a href="{{ url_for('editace', id_pojistenec = pojistenec.id_pojistenec)}}" class = "editovat">Editovat</a> <a href=" {{ url_for('smazat_pojistence', id_pojistenec = pojistenec.id_pojistenec)}}" class = "odstranit">Odstranit</a></td>
                 </tr>
                 
 
@@ -51,6 +53,13 @@
 
             </tbody>
         </table>
+        
+        </div>
+        </div>
+        <div class = "zarovnani">
+            
+            {{ pagination.links }}
+            
         </div>
     </article>
 

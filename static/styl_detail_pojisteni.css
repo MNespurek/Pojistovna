@@ -19,11 +19,12 @@ h1 {
 h4 {
     font-family: Arial;
     color: white;
-    
     background-color: blue;
+    width: max-content;
     padding: 15px;
     border-radius: 15px;
 }
+
 h4 a {
     text-decoration: none;
     color: white;
@@ -70,10 +71,9 @@ nav ul a {
 
 article {
     background-color: white;
-    width: 100%;
+    margin-right: 10px;
     margin-left: 10px;
-    height: 380px;
-  
+    
 }
 
 .footer {
@@ -98,14 +98,31 @@ table {
 
 .zarovnani {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100%;
 }
+
 tr, th, td {
     text-align: center;
     width: 250px;
     height: 50px;
 }
+
+.udaje {
+    text-align: left;
+    padding-left: 10px;
+    width: 250px;
+    height: 20px;
+}
+
+.zarovnani_udaje {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}    
+
 .editovat {
     background-color: goldenrod;
     color: white;
@@ -113,13 +130,28 @@ tr, th, td {
     margin-right: 25px;
     border-radius: 15px;
     text-decoration: none;
+    
+}
+.editovat_klapky{
+    background-color: goldenrod;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: max-content;
 }
 .odstranit {
     background-color: red;
     color: white;
     padding: 10px;
-    
     border-radius: 15px;
     text-decoration: none;
+    
 }
-
+.odstranit_klapky {
+    background-color: red;
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    width: max-content;
+    
+}

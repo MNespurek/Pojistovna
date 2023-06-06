@@ -24,7 +24,7 @@
             <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
     </header>
     <article>
-        <h1>Pojištěnci</h1>
+        <h1>Pojištěnec</h1>
         <div class ="obrazek_udaje">
             <img src = "{{ url_for('static', filename='/obrazky/fotka.jpg') }}" height="70px" width="70px">
             <div class = "zarovnani_udaje">
@@ -60,20 +60,21 @@
                 </tr>
             </thead>
             <tbody>
+                {% for pojisteni in seznam_pojisteni %}
                 <tr>
-                    <td><a href = "pojisteni_majetku.html">Pojištění majetku</a></td>
-                    <td>100 000 Kč</td>
-                    <td><a href="editovat.html" class = "editovat">Editovat</a> <a href="odstranit.html" class = "odstranit">Odstranit</a></td>
+                    <td><a href = "{{ url_for('detail_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}">{{pojisteni.nazev}}</a></td>
+                    <td>{{pojisteni.castka}}</td>
+                    <td><a href="{{ url_for('editace_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}" class = "editovat">Editovat</a> <a href="{{ url_for('smazat_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}" class = "odstranit">Odstranit</a></td>
                 </tr>
                 
-
+                {% endfor %}
             </tbody>
         </table>
         </div>
         <div class = "zarovnani">
-            <h4><a href="pojisteni.html">Přidat pojištění</a></h4>
-            <h4 class = "editovat_klapky"><a href="pojisteni.html">Editovat pojištěnce</a></h4>
-            <h4 class = "odstranit_klapky"><a href="pojisteni.html">Odstranit pojištěnce</a></h4>
+            <h4><a href="{{ url_for('nove_pojisteni', id_pojistenec = pojistenec.id_pojistenec) }}">Přidat pojištění</a></h4>
+            <h4 class = "editovat_klapky"><a href="{{ url_for('editace', id_pojistenec = pojistenec.id_pojistenec) }}">Editovat pojištěnce</a></h4>
+            <h4 class = "odstranit_klapky"><a href="{{ url_for('smazat_pojistence', id_pojistenec = pojistenec.id_pojistenec) }}">Odstranit pojištěnce</a></h4>
         </div>    
     </article>
 

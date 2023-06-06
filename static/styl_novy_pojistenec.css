@@ -86,17 +86,20 @@ body {
     margin: 0px;
     
 }
-.tabulka_pojisteni {
-    width: 400px;
-    
-}
+
 .zarovnani {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    
     margin-bottom: 20px;
     width: 400px;
 }
 
+.obrazek {
+    height: 0%;
+    width: 0%;
+}
 .mezera0 {
     margin: 5px;
     

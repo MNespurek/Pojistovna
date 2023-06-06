@@ -26,36 +26,45 @@
     <article>
         <h1>Pojištění</h1>
         <section class="tabulka_pojisteni">
+            <form action="{{ url_for('add_pojisteni', id_pojistenec = id_pojistenec) }}" method="POST" class = "ulozit">
             <label for="selectField">Pojištění</label>
             <p class="mezera0"></p>
-            <select id="selectField" name="selectField" class = "select">
-                <option value="option1">Pojištění domu</option>
-                <option value="option2">Pojištění auta</option>
-                <option value="option3">Pojištění chaty</option>
+            <select id="selectField" name="nazev" class = "select">
+                <option value="pojištění domu">Pojištění domu</option>
+                <option value="pojištění auta">Pojištění auta</option>
+                <option value="pojištění chaty">Pojištění chaty</option>
             </select>
             <p></p>
         <div class = "zarovnani">
-        <form>
-            <label for="fname">Částka</label>
-            <p class  = "mezera0"></p>
-            <input type="text" id = "fname" name = "fname" class = "label">
-            <p></p>
-            <label for="fname">Platnost od</label>
-            <p class  = "mezera0"></p>
-            <input type="date" id = "fname" name = "fname" class = "label">
-        </form>
-        <form>
-            <label for="fname">Předmět pojištění</label>
-            <p class  = "mezera0"></p>
-            <input type="text" id = "fname" name = "fname" class = "label">
-            <p></p>
-            <label for="fname">Platnost do</label>
-            <p class  = "mezera0"></p>
-            <input type="date" id = "fname" name = "fname" class = "label">
-        </form>
+        
+            <div>
+                <label for="castka">Částka</label>
+                <p class  = "mezera0"></p>
+                <input type="text" id = "fname" name = "castka" placeholder = "Částka" class = "label">
+                <p></p>
+                <label for="fname">Platnost od</label>
+                <p class  = "mezera0"></p>
+                <input type="date" id = "fname" name = "platnost_od" class = "label">
+                <p></p>
+            </div>
+
+            <div>    
+                <label for="fname">Předmět pojištění</label>
+                <p class  = "mezera0"></p>
+                <input type="text" id = "fname" name = "predmet" placeholder = "Předmět pojištění" class = "label">
+                <p></p>
+                <label for="fname">Platnost do</label>
+                <p class  = "mezera0"></p>
+                <input type="date" id = "fname" name = "platnost_do" class = "label">
+                <p></p>
+            </div>
+        
         </div>
+        <div class = "stred">
+            <input type = "submit" value = "Uložit" class = "h4">
+        </div>    
         </section>
-        <h4>Uložit</h4>
+        </form>
     </article>
     <footer class = "footer">
         Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
