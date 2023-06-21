@@ -7,7 +7,8 @@
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_udalosti.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smazání</title>
+
+    <title>Události</title>
 </head>
 <body>
     <header>
@@ -18,22 +19,22 @@
             <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
             <div class="col"></div>
-            <div class="col"><a class = "nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
-            <div class="col"><a class = "nav-link" href ="{{ url_for('pojisteni') }}">Pojištění</a></div>
-            <div class="col"><a class = "nav-link" href ="{{ url_for('udalosti') }}">Události</a></div>
-            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"><a class = "nav-link"  href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" aria-current="page" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
             <div class="col"></div>
             <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
             <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
         </div>
     </div>
-            </header>
+</div>
+</div>
+</nav>
+           </header>
     <article>
-        <h1>Data byla smazána z databáze</h1>
-        
-    </article>
-
-
+        <h1>Události - připravuji</h1>
+    </article>  
 
 </body>
 </html>

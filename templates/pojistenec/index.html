@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="cs-cz">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel ="stylesheet" href="{{ url_for('static', filename='styl.css')}}" type="text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,61 +11,110 @@
 </head>
 <body>
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                    <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                    <li><a href="{{ url_for('udalosti') }}">Události</a></li>
-                    <li><a href="{{ url_for('oaplikaci') }}">O aplikaci...</a></li>
-                </ul>
-            </nav>
+        <div class="container">
+            <div class="row">
+                <nav class="nav nav-pills nav-fill">
+                    <div class="col-2">
+                        <a class = "nav-link active" href ="{{ url_for('index') }}">PojištěníApp</a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <a class = "nav-link" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a>
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a>
+                    </div>
+                    <div class="col-2">
+                        <a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a>
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                    </div>
+                </nav>
+            </div>
         </div>
-        <div class= "registrace"><a href="{{ url_for('registrace') }}" class = "registrace">Registrace</a>
-        <a href="{{ url_for('prihlasit') }}" class = "registrace">Přihlásit</a></div>    
-    </header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" 
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('udalosti') }}">Události</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci</a>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('registrace') }}">Registrace</a>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <article>
         <h1>Webová aplikace pro evidenci pojistných událostí</h1>
-        <p class = "foto"><img src = "{{ url_for('static', filename='/obrazky/fotka.jpg') }}" alt = "MNPojistovna" width="30%" height = "30%"/></p>
-        <h4>Základní varianta</h4>
-        <ul>
-            <li>Aplikace obsahuje kompletní správu (CRUD)<strong>pojištěných</strong>(např. "Jan Novák") a jejich <strong>pojištění</strong>(např. "pojištění bytu")</li>
-                <ul>
-                    <li>Vytvoření pojištěného</li>
-                    <li>Vytvoření pojištění</li>
-                    <li>Zobrazení detailu pojištěného včetně pojištění</li>
-                    <li>Zobrazení detailu pojištění</li>
-                    <li>Zobrazení seznamu pojištěných</li>
-                    <li>Odstranění pojištěného včetně všech jeho pojištění</li>
-                    <li>Odstranění pojištění</li>
-                    <li>Editace pojištěného</li>
-                    <li>Editace pojištění pojištěného</li>
-                </ul>
-            <li>Dané entity jsou uloženy v SQL databázi</li>
-            <li>Aplikace je naprogramována podle dobrých praktit a je plně responzivní</li>
-
-        </ul>
-        <h4>Rozšířená varainta</h4>
-        <ul>
-            <li>Aplikace podporuje uživatelské role (pojištěný, administrátor) navrhni a implementuj, kdo vidí a může editovat jaká data</li>
-            <li>Aplikace eviduje pojistné události pojištěných, rovněž pomoci kompletní správy (CRUD)</li>
-        </ul>
-        <h4>Expertní varianta</h4>
-        <ul>
-            <li>Aplikace podporuje rozlišení pojistníků(těch, kdo platí pojištění) a pojištěných(těch, na koho se pojištění vztahuje).</li>
-            <li>Aplikace generuje statistiky ve formě reportů</li>
-        </ul>
-    </article>
-    <div class = "cistic"></div>
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
-
-   
-    
-    
-    
+        <div class="container">
+            <div class="row">
+               <div class="col-4 offset-4">
+                    <div class="centered-form">
+                        <ul>
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item">Hotovo &#10004</li>
+                            <li  class="list-group-item disabled">Pracuji na tom <span class="red">&#10008</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4>Základní varianta</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">Aplikace obsahuje kompletní správu (CRUD)<strong>pojištěných</strong>(např. "Jan Novák") a jejich <strong>pojištění</strong>(např. "pojištění bytu")&#10004</li>
+                        <li class="list-group-item">Vytvoření pojištěného&#10004</li>
+                        <li class="list-group-item">Vytvoření pojištění&#10004</li>
+                        <li class="list-group-item">Zobrazení detailu pojištěného včetně pojištění&#10004</li>
+                        <li class="list-group-item">Zobrazení detailu pojištění&#10004</li>
+                        <li  class="list-group-item">Zobrazení seznamu pojištěných&#10004</li>
+                        <li  class="list-group-item">Odstranění pojištěného včetně všech jeho pojištění&#10004</li>
+                        <li  class="list-group-item">Odstranění pojištění&#10004</li>
+                        <li  class="list-group-item">Editace pojištěného&#10004</li>
+                        <li  class="list-group-item">Editace pojištění pojištěného&#10004</li>
+                        <li  class="list-group-item">Dané entity jsou uloženy v SQL databázi&#10004</li>
+                        <li  class="list-group-item">Aplikace je naprogramována podle dobrých praktit a je plně responzivní&#10004</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4>Rozšířená varianta</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item disabled">Aplikace podporuje uživatelské role (pojištěný, administrátor) navrhni a implementuj, kdo vidí a může editovat jaká data<span class="red">&#10008</span></li>
+                        <li class="list-group-item disabled">Aplikace eviduje pojistné události pojištěných, rovněž pomoci kompletní správy (CRUD)<span class="red">&#10008</span></li>
+                    </ul>          
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4>Expertní varianta</h4>
+                    <ul>
+                        <li  class="list-group-item disabled">Aplikace podporuje rozlišení pojistníků(těch, kdo platí pojištění) a pojištěných(těch, na koho se pojištění vztahuje).<span class="red">&#10008</li>
+                        <li  class="list-group-item disabled">Aplikace generuje statistiky ve formě reportů<span class="red">&#10008</li>
+                    </ul>  
+                </div>
+            </div>
+        </div>    
+    </article> 
 </body>
 </html>

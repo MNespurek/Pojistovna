@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_pojistenci.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,41 +10,52 @@
     <title>Pojištěnci</title>
 </head>
 <body>
+
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                        <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                        <li><a href="události.html">Události</a></li>
-                        <li><a href="oaplikaci.html">O aplikaci...</a></li>
-                    </ul>
-                </nav>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
-            <div class= "registrace"><a href="registrace.html" class = "registrace">Registrace</a>
-            <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link" href ="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link" href ="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+        </nav>
+
     </header>
     <article>
-        <h1>Pojištěnci</h1>
         <div class = "zarovnani">
-            <h4><a href = "{{ url_for('novy_pojistenec') }}">Nový pojištěnec</a></h4>
+            <h5><a href = "{{ url_for('novy_pojistenec') }}">Nový pojištěnec</a></h5>
         </div>
-        <div class = "zarovnani">
-                 
-            <table border = "1">
+        <div class="container text-center">
+            <div class="row">
+              <div class="col">
+            <div class = "table-responsive">      
+            <table class = "table table-striped table-hover">
             <thead>
                 <tr>
+                    
                     <th>Jméno</th>
                     <th>Bydliště</th>
                     <th>Možnost</th>
+                </div>
                 </tr>
             </thead>
             <tbody>
+                
                 {% for pojistenec in seznam_pojistencu %}
+                </div>
                 <tr>
                     
-                    <td><a href="{{ url_for('pojistenec', id_pojistenec = pojistenec.id_pojistenec) }}">{{ pojistenec.jmeno}} {{ pojistenec.prijmeni }}</a></td>
+                    <td><a href="{{ url_for('pojistenec', id_pojistenec = pojistenec.id_pojistenec) }}">{{ pojistenec.jmeno}} {{ pojistenec.prijmeni }}</td>
                     <td>{{ pojistenec.mesto }}</td>
                     
                     <td><a href="{{ url_for('editace', id_pojistenec = pojistenec.id_pojistenec)}}" class = "editovat">Editovat</a> <a href=" {{ url_for('smazat_pojistence', id_pojistenec = pojistenec.id_pojistenec)}}" class = "odstranit">Odstranit</a></td>
@@ -56,16 +69,16 @@
         
         </div>
         </div>
+    </div>
+</div>
+</div>
         <div class = "zarovnani">
             
             {{ pagination.links }}
-            
-        </div>
+</div>
+        
     </article>
 
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
 
 
 </body>

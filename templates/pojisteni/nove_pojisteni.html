@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_nove_pojisteni.css')}}" type = "text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nové pojištěni</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
+            </div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojisteni') }}">Pojištění</a>
+            </div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+        
+    </header>
+    <article>
+        <div class="zarovnani"><h1>Nové pojištění</h1></div>
+        <p></p>
+        <form action="{{ url_for('add_pojisteni', id_pojistenec = id_pojistenec) }}" method="POST">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="centered-form">
+                        <div class="form-group full-width-group">
+                      
+            <label for="selectField">Pojištění</label>
+            
+            <select id="selectField" name="nazev" class="form-control">
+                <option value="pojištění domu">Pojištění domu</option>
+                <option value="pojištění auta">Pojištění auta</option>
+                <option value="pojištění chaty">Pojištění chaty</option>
+            </select>
+            </div>
+            </div>
+            <div class="centered-form">
+                <div class="form-group">
+            <label for="castka">Částka</label>        
+            <input type="text" id = "fname" name = "castka" class="form-control" placeholder = "Částka">
+            </div>
+            <div class="form-group">
+            <label for="fname">Předmět pojištění</label>
+            <input type="text" id = "fname" name = "predmet" class="form-control" placeholder = "Předmět pojištění">
+                </div>
+                </div>
+                <div class="centered-form">
+                    <div class="form-group">
+                        <label for="fname">Platnost od</label>
+                
+                        <input type="date" id = "fname" name = "platnost_od" class = "form-control">
+                        </div>
+                        <div class="form-group">
+                        <label for="fname">Platnost do</label>
+                
+                <input type="date" id = "fname" name = "platnost_do" class = "form-control">
+            </div>
+        </div>
+        <div class = "zarovnani">
+            <button type="submit" class="btn btn-primary">Odeslat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+    </article>
+
+</body>
+</html>

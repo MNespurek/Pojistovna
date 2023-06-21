@@ -1,14 +1,13 @@
 header {
-    height: 150px;
-
-    background: grey;
+    height: 100px;
+    width: 100%;
+    background: rgb(238, 232, 232);
     font-size: 1.5em;
-    color: white;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0px;
+    
+
 }
+
 
 h1 {
     font-family: Arial;
@@ -91,4 +90,45 @@ article {
 body {
     padding: 0px;
     margin: 0px;
+    
 }
+
+.navbar {
+    display: none;
+}
+
+.nav-link.disabled {
+    color: rgba(183, 193, 203, 0.75);
+    pointer-events: none;
+    background-color: var(--bs-list-group-disabled-bg);
+    
+}
+
+@media (max-width: 990px) {
+    .container {
+        display: none;
+    }
+    .navbar {
+        display: flex;
+        background: rgb(238, 232, 232);
+
+    }
+    nav ul {
+        gap: 0px;
+        
+    }
+    .bg-body-tertiary {
+        --bs-tertiary-bg-rgb: 238,232,232;
+    }
+    .navbar-nav {
+        --bs-nav-link-color: rgb(13 110 253 / 65%);
+        --bs-nav-link-hover-color: rgb (10, 88, 202);
+    }
+    
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+        color: rgb(13 110 253);
+    }
+
+    }
+    
+    

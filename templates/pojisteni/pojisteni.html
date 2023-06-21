@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_pojisteni.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Pojištěni</title>
 </head>
 <body>
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                        <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                        <li><a href="události.html">Události</a></li>
-                        <li><a href="oaplikaci.html">O aplikaci...</a></li>
-                    </ul>
-                </nav>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
-            <div class= "registrace"><a href="registrace.html" class = "registrace">Registrace</a>
-            <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojisteni') }}">Pojištění</a>
+            </div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+        
     </header>
     <article>
-        <h1>Pojištění</h1>
-        <section class="tabulka_pojisteni">
-            <form action="{{ url_for('add_pojisteni', id_pojistenec = id_pojistenec) }}" method="POST" class = "ulozit">
-            <label for="selectField">Pojištění</label>
-            <p class="mezera0"></p>
-            <select id="selectField" name="nazev" class = "select">
-                <option value="pojištění domu">Pojištění domu</option>
-                <option value="pojištění auta">Pojištění auta</option>
-                <option value="pojištění chaty">Pojištění chaty</option>
-            </select>
-            <p></p>
         <div class = "zarovnani">
-        
-            <div>
-                <label for="castka">Částka</label>
-                <p class  = "mezera0"></p>
-                <input type="text" id = "fname" name = "castka" placeholder = "Částka" class = "label">
-                <p></p>
-                <label for="fname">Platnost od</label>
-                <p class  = "mezera0"></p>
-                <input type="date" id = "fname" name = "platnost_od" class = "label">
-                <p></p>
-            </div>
+            <h5><a href = "{{ url_for('nove_pojisteni', id_pojistenec = pojisteni.id_pojistenec) }}">Nové pojištění</a></h5>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+              <div class="col">
+            <div class = "table-responsive">      
+            <table class = "table table-striped table-hover">
+            <thead>
+                <tr>
+                    
+                    <th>Jméno</th>
+                    <th>Název pojištění</th>
+                    <th>Částka</th>
+                    <th>Možnosti</th>
+                </div>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for pojisteni in seznam_pojisteni %}
+                </div>
+                <tr>
+                    
+                    <td><a href="{{ url_for('pojistenec', id_pojistenec = pojisteni.id_pojistenec) }}">{{ pojisteni.jmeno}} {{ pojisteni.prijmeni }}</td>
+                    <td><a href="{{ url_for('detail_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}">{{ pojisteni.nazev }}</a></td>
+                    
+                    <td>{{ pojisteni.castka }}</td>
 
-            <div>    
-                <label for="fname">Předmět pojištění</label>
-                <p class  = "mezera0"></p>
-                <input type="text" id = "fname" name = "predmet" placeholder = "Předmět pojištění" class = "label">
-                <p></p>
-                <label for="fname">Platnost do</label>
-                <p class  = "mezera0"></p>
-                <input type="date" id = "fname" name = "platnost_do" class = "label">
-                <p></p>
-            </div>
+                    <td><a href="{{ url_for('editace_pojisteni', id_pojisteni = pojisteni.id_pojisteni)}}" class = "editovat">Editovat</a> <a href=" {{ url_for('smazat_pojisteni', id_pojisteni = pojisteni.id_pojisteni)}}" class = "odstranit">Odstranit</a></td>
+                </tr>
+                
+
+                {% endfor %}
+
+            </tbody>
+        </table>
         
         </div>
-        <div class = "stred">
-            <input type = "submit" value = "Uložit" class = "h4">
-        </div>    
-        </section>
-        </form>
+        </div>
+    </div>
+</div>
+</div>
+        <div class = "zarovnani">
+            
+            {{ pagination.links }}
+</div>
+        
     </article>
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
-
 
 </body>
 </html>

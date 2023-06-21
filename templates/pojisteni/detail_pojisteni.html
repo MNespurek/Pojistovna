@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_detail_pojisteni.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osoba</title>
+
+    <title>Detail pojištění</title>
 </head>
 <body>
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                        <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                        <li><a href="události.html">Události</a></li>
-                        <li><a href="oaplikaci.html">O aplikaci...</a></li>
-                    </ul>
-                </nav>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
-            <div class= "registrace"><a href="registrace.html" class = "registrace">Registrace</a>
-            <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link"  href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+   </nav>    
     </header>
     <article>
         <h1>Detail pojištění</h1>
-        <div class ="zarovnani_udaje">
-            <img src = "{{ url_for('static', filename='/obrazky/fotka.jpg') }}", height="10%", width="5%">
+        
+        <div class="zarovnani">
             <div>
-                <table border = "1">
+                <table class="table">
                 <thead>
                     <tr>
-                        <td >Název</td>
-                        <td >Částka</td>
-                        <td >Předmět</td>
-                        <td >Platnost od</td>
-                        <td >Platnost do</td>
-
-                </tr>
+                        <th colspan="2" scope = "row">{{ pojisteni.nazev }}</th>
+                    </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td >{{ pojisteni.nazev }}</td>
-                    <td >{{ pojisteni.castka }}</td>
-                    <td >{{ pojisteni.predmet }}</td>
-                    <td >{{ pojisteni.platnost_od }}</td>
-                    <td >{{ pojisteni.platnost_do }}</td>
+                    <td colspan="2" scope = "row" >{{ pojisteni.castka }} {{ pojisteni.predmet }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" scope = "row">{{ pojisteni.platnost_od }} {{ pojisteni.platnost_do }}</td>
+                    
 
                 </tr>
                     
@@ -55,15 +57,12 @@
         </div>
 
         <div class = "zarovnani">
-            <h4><a href="">Přidat pojištění</a></h4>
-            <h4 class = "editovat_klapky"><a href="">Editovat pojištěnce</a></h4>
-            <h4 class = "odstranit_klapky"><a href="pojisteni.html">Odstranit pojištěnce</a></h4>
+            <h5 class="nova_klapka"><a href="{{ url_for('nove_pojisteni', id_pojistenec = pojisteni.id_pojistenec) }}">Přidat pojištění</a></h5>
+            <h5  class = "editovat_klapky"><a href="{{ url_for('editace_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}">Editovat pojištění</a></h5>
+            <h5 class = "odstranit_klapky" ><a href="{{ url_for('smazat_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}">Odstranit pojištění</a>
+            
         </div>    
     </article>
-
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
 
 
 </body>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_novy_pojistenec.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,69 +11,81 @@
 </head>
 <body>
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                        <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                        <li><a href="události.html">Události</a></li>
-                        <li><a href="oaplikaci.html">O aplikaci...</a></li>
-                    </ul>
-                </nav>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
-            <div class= "registrace"><a href="registrace.html" class = "registrace">Registrace</a>
-            <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+
     </header>
     <article>
-        <h1>Editace pojištěnce</h1>
+        <div class="zarovnani">
+        <h1>Editace pojištěnce</h1></div>
             <p></p>
             
-        <form action="/pojistenec/ulozit_editaci/{{ pojistenec }}" method="POST" class = "ulozit">
-            <div class = "zarovnani">
-                <div>
-                    <label for="jmeno">Jméno</label>
-                    <p class = "mezera0"></p>
-                    <input type="text" id = "jmeno" class = "label" name = "jmeno" value =" {{pojistenec.jmeno}} " requiered>
-                    <p></p>
-                    <label for="email">Email</label>
-                    <p class = "mezera0"></p>
-                    <input type="email" id = "email" name = "email" value = "{{pojistenec.email}}" requiered placeholder="Email" class = "label">
-                    <p></p>
-                    <label for="ulice">Ulice a číslo popisné</label>
-                    <p class  = "mezera0"></p>
-                    <input type="text" id = "ulice" name = "ulice" value = "{{pojistenec.ulice}}" placeholder = "Ulice" class = "label">
-                </div>       
-            
-                <div>
-                    <label for="prijmeni">Příjmení</label>
-                    <p class  = "mezera0"></p>
-                    <input type="text" id = "prijmeni" name = "prijmeni" value = "{{pojistenec.prijmeni}}" placeholder="Příjmení" class = "label">
-                    <p></p>
-                    <label for="telefon">Telefon</label>
-                    <p class  = "mezera0"></p>
-                    <input type="telefon" id = "telefon" name = "telefon" value = "{{pojistenec.telefon}}" placeholder="Telefon" class = "label">
-                    <p></p>
-                    <label for="mesto">Město</label>
-                    <p class  = "mezera0"></p>
-                    <input type="text" id = "mesto" name = "mesto" value = "{{pojistenec.mesto}}"placeholder = "Město" class = "label">
-                    <p></p>
-                    <label for="psc">PSČ</label>
-                    <p class  = "mezera0"></p>
-                    <input type="text" id = "psc" name = "psc" value = "{{pojistenec.psc}}"placeholder = "PSČ" class = "label">
+        <form action="/pojistenec/ulozit_editaci/{{ pojistenec }}" method="POST">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="centered-form">
+                      <div class="form-group">
+                        <label for="jmeno">Jméno:</label>
+                        <input type="text" name="jmeno" value=" {{pojistenec.jmeno}} " class="form-control" id="jmeno" placeholder="Zadejte jméno">
+                      </div>
+                      <div class="form-group">
+                        <label for="prijmeni">Příjmení:</label>
+                        <input type="text" name="prijmeni" value=" {{pojistenec.prijmeni}} " class="form-control" id="prijmeni" placeholder="Zadejte příjmení">
+                      </div>
+                    </div>
+                    <div class="centered-form">
+                      <div class="form-group">
+                        <label for="telefon">Telefon:</label>
+                        <input type="text" name="telefon" value=" {{pojistenec.telefon}} " class="form-control" id="telefon" placeholder="Zadejte telefon">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" value=" {{pojistenec.email}} " class="form-control" id="email" placeholder="Zadejte email">
+                      </div>
+                    </div>
+                    <div class="centered-form">
+                    <div class="form-group">
+                        <label for="ulice">Ulice:</label>
+                        <input type="text" name="ulice" value=" {{pojistenec.ulice}} " class="form-control" id="ulice" placeholder="Zadejte ulici">
+                      </div>
+                      <div class="form-group">
+                        <label for="mesto">Město:</label>
+                        <input type="text" name="mesto" value="{{pojistenec.mesto}}" class="form-control" id="mesto" placeholder="Zadejte město">
+                      </div>
+                      </div>
+                      <div class="centered-form">
+                      <div class="form-group full-width-group">
+                        <label for="psc">PSČ:</label>
+                        <input type="text" name="psc" value="{{pojistenec.psc}}" class="form-control" id="psc" placeholder="Zadejte PSČ">
+                      </div>
+                      
+                    </div>
+                      <div class = "zarovnani">
+                      <button type="submit" class="btn btn-primary">Odeslat</button>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div class = "stred">
-            <input type = "submit" value = "Uložit" class = "h4">
-            </div>
-        </form>
-        </div>
+              </div>
+            </form>
+            
         
     </article>
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
-
+    
 
 </body>
 </html>

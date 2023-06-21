@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_registrace.css')}}" type = "text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Registrace</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
+            </div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link" href ="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link" href ="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+
+</nav>
+            </header>
+    <article>
+        <div class="zarovnani">
+            <h1>Registrace - Daný email již existuje nebo jste nezadali stejné heslo</h1></div>
+                <p></p>
+            <form action="/add" method="POST">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="centered-form">
+                      <div class="form-group">
+                        <label for="jmeno">Jméno:</label>
+                        <input type="text" class="form-control" name="jmeno" id="jmeno" placeholder="Zadejte jméno">
+                      </div>
+                      <div class="form-group">
+                        <label for="prijmeni">Příjmení:</label>
+                        <input type="text" class="form-control" name="prijmeni" id="prijmeni" placeholder="Zadejte příjmení">
+                      </div>
+                    </div>
+                    <div class="centered-form">
+                      <div class="form-group">
+                        <label for="heslo">Heslo:</label>
+                        <input type="password" class="form-control" name="heslo" id="heslo" required pattern=".{8,}" title="Heslo musí mít alespoň 8 znaků" placeholder="Zadejte heslo">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Potvrzení hesla:</label>
+                        <input type="password" class="form-control" name="potvrzeni_heslo" id="heslo" pattern=".{8,}" title="Heslo musí mít alespoň 8 znaků" placeholder="Potvrďte heslo">
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Zadejte email">
+                      </div>
+                    </div>
+                    
+                      
+                    </div>
+                      <div class = "zarovnani">
+                      <button type="submit" class="btn btn-primary">Registrovat</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+    </body>
+</html>

@@ -2,75 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_pojisteni.css')}}" type = "text/css" />
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_editace_pojisteni.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pojištěni</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <title>Editace pojištěni</title>
 </head>
 <body>
     <header>
-        <div class ="navigace">
-            <a href ="{{ url_for('index') }}">PojištěníApp</a>
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('pojistenci') }}">Pojištěnci</a></li>
-                        <li><a href="{{ url_for('pojisteni') }}">Pojištění</a></li>
-                        <li><a href="události.html">Události</a></li>
-                        <li><a href="oaplikaci.html">O aplikaci...</a></li>
-                    </ul>
-                </nav>
+        <div class="container">
+            <div class="row">
+        <nav class="nav nav-pills nav-fill">
+            <div class="col-2">
+            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
             </div>
-            <div class= "registrace"><a href="registrace.html" class = "registrace">Registrace</a>
-            <a href="prihlasit.html" class = "registrace">Přihlásit</a></div>    
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
+            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojisteni') }}">Pojištění</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a></div>
+            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
+            <div class="col"></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
+            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
+        </div>
+    </div>
+        </nav>
+
     </header>
     <article>
-        <h1>Pojištění</h1>
-        <section class="tabulka_pojisteni">
-            <form action="{{ url_for('ulozit_editaci_pojisteni', id_pojisteni = pojisteni.id_pojisteni, pojisteni = pojisteni) }}" method="POST" class = "ulozit">
+        <div class="zarovnani"><h1> Editace pojištění</h1></div>
+        <p></p>
+         <form action="{{ url_for('ulozit_editaci_pojisteni', id_pojisteni = pojisteni.id_pojisteni, pojisteni = pojisteni) }}" method="POST">
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <div class="centered-form">
+                        <div class="form-group full-width-group">
+            
+            
             <label for="selectField">Pojištění</label>
-            <p class="mezera0"></p>
-            <select id="selectField" name="nazev" class = "select">
+            
+            <select id="selectField" name="nazev" class = "form-control">
                 
-                <option value="{{nazev}}" {% if pojisteni.nazev == "Pojištění domu" %}selected{% endif %}>{{ pojisteni.nazev}}</option>
-                <option value="{{nazev}}" {% if pojisteni.nazev == "Pojištění auta" %}selected{% endif %}>{{ pojisteni.nazev}}</option>
-                <option value="{{nazev}}" {% if pojisteni.nazev == "Pojištění chaty" %}selected{% endif %}>{{ pojisteni.nazev}}</option>
+                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění domu" %}selected{% endif %}>Pojištění domu</option>
+                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění auta" %}selected{% endif %}>Pojistění auta</option>
+                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění chaty" %}selected{% endif %}>Pojištění chaty</option>
                 
             </select>
-            <p></p>
-        <div class = "zarovnani">
-        
-            <div>
+            </div>
+            </div>
+            <div class="centered-form">
+                <div class="form-group">
                 <label for="castka">Částka</label>
-                <p class  = "mezera0"></p>
-                <input type="text" value = "{{pojisteni.castka}}" required id = "fname" name = "castka" placeholder = "Částka" class = "label">
-                <p></p>
-                <label for="fname">Platnost od</label>
-                <p class  = "mezera0"></p>
-                <input type="date" value = "{{pojisteni.platnost_od}}" requiered id = "fname" name = "platnost_od" class = "label">
-                <p></p>
-            </div>
-
-            <div>    
+                <input type="text" value = "{{pojisteni.castka}}" required id = "fname" name = "castka" placeholder = "Částka" class = "form-control">
+                </div>    
+                <div class="form-group">
                 <label for="fname">Předmět pojištění</label>
-                <p class  = "mezera0"></p>
-                <input type="text" value = "{{pojisteni.predmet}}" required id = "fname" name = "predmet" placeholder = "Předmět pojištění" class = "label">
-                <p></p>
+                <input type="text" value = "{{pojisteni.predmet}}" required id = "fname" name = "predmet" placeholder = "Předmět pojištění" class = "form-control">
+                </div>
+                </div>
+                <div class="centered-form">
+                    <div class="form-group">
+                <label for="fname">Platnost od</label>
+                <input type="date" value = "{{pojisteni.platnost_od}}" requiered id = "fname" name = "platnost_od" class = "form-control">
+                </div>
+                <div class="form-group">
                 <label for="fname">Platnost do</label>
-                <p class  = "mezera0"></p>
-                <input type="date" value = "{{pojisteni.platnost_do}}" requiered id = "fname" name = "platnost_do" class = "label">
-                <p></p>
+                <input type="date" value = "{{pojisteni.platnost_do}}" requiered id = "fname" name = "platnost_do" class = "form-control">
+                </div>
+               </div>
+
+               <div class = "zarovnani">
+                <button type="submit" class="btn btn-primary">Odeslat</button>
+              </div>
             </div>
-        
+          </div>
         </div>
-        <div class = "stred">
-            <input type = "submit" value = "Uložit" class = "h4">
-        </div>    
-        </section>
-        </form>
-    </article>
-    <footer class = "footer">
-        Vytvořil &copy;MN 2023 pro <a href="https://github.com/MNespurek/Pojistovna">MNPojisťovna</a>
-    </footer>
+      </form>
+        </article>
 
 
 </body>

@@ -1,122 +1,177 @@
 header {
-    height: 150px;
+    height: 100px;
     width: 100%;
-    background: grey;
+    background: rgb(238, 232, 232);
     font-size: 1.5em;
-    color: white;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 0px;
-}
-h1 {
-    font-family: Arial;
-    color: rgb(45, 45, 124);
 }
 
-h4 {
+.nav {
+    margin-top: 5px;
+}
+
+h5 {
     font-family: Arial;
-    color: rgb(45, 45, 124)
+    color: white;
+    margin-top: 20px;
+    width: max-content;
+}
+
+h5 a {
+    text-decoration: none;
+    color: white;
+    background-color: blue;
+    padding: 15px;
+    border-radius: 15px;
+    
+}
+h5 :hover {
+    background-color: rgb(7, 7, 80);
 }
 
 ul {
     color: blue;
 }
-.navigace {
-    display: flex;
-    align-items: center;
-    gap: 100px;
-    margin-left: 30px;
-
-}
-
-.navigace a {
-    text-decoration: none;
-    list-style-type: none;
-    color: white;
-
-}
 
 nav ul {
     display: flex;
     list-style-type: none;
-    gap: 40px;
     justify-content: space-evenly;
   
 }
-nav ul a {
-    text-decoration: none;
-      
-}
-
-.registrace {
-    display: flex;
-    gap: 10px;
-    text-decoration: none;
-    color: white;
-    margin-right: 30px;
-}    
-
-
+  
 article {
     background-color: white;
     width: 100%;
     margin-left: 10px;
+    height: 380px;
   
-}
-
-.footer {
-    
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background-color: grey;
-    height: 100px;
 }
 
 body {
     padding: 0px;
     margin: 0px;
 }
-.select {
-    width: 400px;
-    height: 30px;
-    margin: 0px;
-    
+
+.table {
+    border-collapse: collapse;
+    vertical-align: middle;
 }
 
-.mezera0 {
-    margin: 1px
-}
-.tabulka_pojisteni {
-    width: 400px;
-    
-}
 .zarovnani {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    width: 400px;
-}
-.label {
-    height: 25px;
-    width: 150px;
-    box-shadow:  0 0 5px 2px lightgray;
-    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 
 }
-h4 {
-    font-family: Arial;
-    color: white;
-    width: max-content;    
-    background: blue;
-    padding: 10px 25px 10px 25px;
-    border-radius: 15px;
+tr, th, td {
+    text-align: center;
+    height: 4em;
 }
-.stred {
+.editovat {
+    background-color: goldenrod;
+    color: white;
+    padding: 10px;
+    margin-right: 25px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+.editovat:hover {
+background-color: rgb(105, 80, 16);
+}
+.odstranit {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+.odstranit:hover {
+    background-color:rgb(114, 3, 3);
+    }
+
+.navbar {
+    display: none;
+}
+article .row {
+    margin-top: 30px;
+}
+
+
+.text-start {
     display: flex;
-    justify-content: center;
+    gap: 30px;
+    
     
 }
+.form-group {
+    margin-bottom: 15px;
+}
+
+.nav-link.disabled {
+    color: rgba(183, 193, 203, 0.75);
+    pointer-events: none;
+    background-color: var(--bs-list-group-disabled-bg);
+    
+}
+@media (max-width: 990px) {
+    header .container {
+        display: none;
+    
+    }
+    .navbar {
+        display: flex;
+        background: rgb(238, 232, 232);
+
+    }
+    nav ul {
+        gap: 0px;
+        
+    }
+    .bg-body-tertiary {
+        --bs-tertiary-bg-rgb: 238,232,232;
+    }
+    .navbar-nav {
+        --bs-nav-link-color: rgb(13 110 253 / 65%);
+        --bs-nav-link-hover-color: rgb (10, 88, 202);
+    }
+    
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+        color: rgb(13 110 253);
+    }
+    article {
+        margin-left: 0px;
+        }
+
+    }
+    
+@media (max-width: 470px) {
+        .editovat {
+          margin-bottom: 10px;
+          margin-right: 0px;
+          display: block;
+        }
+        .odstranit {
+            display: block;
+        }
+        .td {
+            height: 8em;
+        }
+        .table{
+            height: 400px;
+        }
+        .tbody {
+            height: 450px;
+        }
+        
+    }      
+
+    .container.text-center {
+        margin-bottom: 20px;
+        
+    }
