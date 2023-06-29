@@ -27,3 +27,16 @@ class OsobaVypis:
         self.jmeno = jmeno
         self.prijmeni = prijmeni
         self.mesto = mesto
+
+class Registrace:
+    def __init__(self, jmeno, prijmeni, hash_heslo, email):
+        self.jmeno = jmeno
+        self.prijmeni = prijmeni
+        self.hash_heslo = hash_heslo
+        self.email = email
+
+class Uzivatel:
+    def __init__(self, id_registrace, email, hash_heslo):
+        self.id_registrace = id_registrace
+        self.email = email
+        self.hash_heslo = hash_heslo

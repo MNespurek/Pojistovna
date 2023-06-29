@@ -34,7 +34,7 @@
     <article>
         <div class="zarovnani"><h1> Editace pojištění</h1></div>
         <p></p>
-         <form action="{{ url_for('ulozit_editaci_pojisteni', id_pojisteni = pojisteni.id_pojisteni, pojisteni = pojisteni) }}" method="POST">
+         <form action="{{ url_for('editace_pojisteni', id_pojisteni = pojisteni.id_pojisteni) }}" method="POST">
             <div class="container">
                 <div class="row">
                   <div class="col-md-6 offset-md-3">
@@ -46,9 +46,9 @@
             
             <select id="selectField" name="nazev" class = "form-control">
                 
-                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění domu" %}selected{% endif %}>Pojištění domu</option>
-                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění auta" %}selected{% endif %}>Pojistění auta</option>
-                <option value="{{nazev}}" {% if pojisteni.nazev == "pojištění chaty" %}selected{% endif %}>Pojištění chaty</option>
+                <option value="pojištění domu" {% if pojisteni.nazev == "pojištění domu" %}selected{% endif %}>Pojištění domu</option>
+                <option value="pojištění auta" {% if pojisteni.nazev == "pojištění auta" %}selected{% endif %}>Pojistění auta</option>
+                <option value="pojištění chaty" {% if pojisteni.nazev == "pojištění chaty" %}selected{% endif %}>Pojištění chaty</option>
                 
             </select>
             </div>

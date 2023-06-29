@@ -34,7 +34,7 @@
         <h1>Editace pojištěnce</h1></div>
             <p></p>
             
-        <form action="/pojistenec/ulozit_editaci/{{ pojistenec }}" method="POST">
+        <form action="{{ url_for('editace', id_pojistenec = pojistenec.id_pojistenec) }}" method="POST">
             <div class="container">
                 <div class="row">
                   <div class="col-md-6 offset-md-3">
