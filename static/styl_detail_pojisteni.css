@@ -50,6 +50,12 @@ background-color: rgb(105, 80, 16);
  
 }
 
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
 header {
     height: 100px;
     width: 100%;

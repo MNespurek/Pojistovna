@@ -7,7 +7,7 @@
     <link rel = "stylesheet" href = "{{ url_for('static', filename='styl_registrace.css')}}" type = "text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Registrace</title>
+    <title>Oprávnění</title>
 </head>
 <body>
     <header>
@@ -32,46 +32,8 @@
             </header>
     <article>
         <div class="zarovnani">
-            <h1>Registrace</h1></div>
+            <h1>Nemáte oprávnění pro tuto činnost</h1></div>
                 <p></p>
-            <form action="/registrace", method="POST">
-              {{form.csrf_token}}
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-6 offset-md-3">
-                    <div class="centered-form">
-                      <div class="form-group">
-                        <label for="jmeno">Jméno:</label>
-                        {{form.jmeno(class="form-control")}}
-                      </div>
-                      <div class="form-group">
-                        <label for="prijmeni">Příjmení:</label>
-                        {{form.prijmeni(class="form-control")}}
-                      </div>
-                    </div>
-                    <div class="centered-form">
-                      <div class="form-group">
-                        <label for="heslo">Heslo:</label>
-                        {{form.heslo(class="form-control")}}
-                      </div>
-                      <div class="form-group">
-                        <label for="potvrzeni_hesla">Potvrzení hesla:</label>
-                        {{form.potvrzeni_hesla(class="form-control")}}
-                      </div>
-                      <div class="form-group">
-                        <label for="email">Email:</label>
-                        {{form.email(class="form-control")}}
-                      </div>
-                    </div>
-                    
-                      
-                    </div>
-                      <div class = "zarovnani">
-                      <button type="submit" class="btn btn-primary">Registrovat</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+            
     </body>
 </html>

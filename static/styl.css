@@ -14,6 +14,21 @@ header {
     text-align: center;
 }
 
+.nav .list-group-item:last-child {
+    color: RGB(10, 88, 202);
+    font-size: 1rem;
+    margin-top: 7px;
+    text-align: center;
+    margin-left: 5px;
+    
+}
+
+
+.nav a.list-group-item:last-child {
+    margin: 0px;
+    
+}
+
 h1, h4 {
     font-family: Arial;
     color: rgb(33, 37, 41);
@@ -96,6 +111,7 @@ article .col, .col-5  {
 .list-group-item {
     text-align: left;
 }
+
 
 @media (max-width: 990px) {
     header .container {

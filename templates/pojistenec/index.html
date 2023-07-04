@@ -17,7 +17,8 @@
                     <div class="col-2">
                         <a class = "nav-link active" href ="{{ url_for('index') }}">PojištěníApp</a>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                    </div>
                     <div class="col">
                         <a class = "nav-link" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
                     </div>
@@ -30,12 +31,18 @@
                     <div class="col-2">
                         <a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a>
                     </div>
-                    <div class="col"></div>
+                    <div class="col">
+                    </div>
                     <div class="col">
                         <a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a>
                     </div>
                     <div class="col">
+                        {% if current_user.is_authenticated %}
+                        <div class="list-group-item">{{ current_user.id_role }} {{ current_user.prijmeni }}
+                        <a href="{{ url_for('odhlasit') }}" class="list-group-item">Odhlásit</a>
+                        {% else %}
                         <a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                        {% endif %}
                     </div>
                 </nav>
             </div>
@@ -48,7 +55,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">App</a>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">App</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
@@ -59,10 +67,26 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('udalosti') }}">Události</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci</a>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('registrace') }}">Registrace</a>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('registrace') }}">Registrace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if current_user.is_authenticated %}<span class="nav-link">{{ current_user.jmeno }} {{current_user.prijmeni}}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('odhlasit') }}">Odhlásit</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -86,25 +110,39 @@
                 <div class="col">
                     <h4>Základní varianta</h4>
                     <ul class="list-group">
-                        <li class="list-group-item">Aplikace obsahuje kompletní správu (CRUD)<strong>pojištěných</strong>(např. "Jan Novák") a jejich <strong>pojištění</strong>(např. "pojištění bytu")&#10004</li>
-                        <li class="list-group-item">Vytvoření pojištěného&#10004</li>
-                        <li class="list-group-item">Vytvoření pojištění&#10004</li>
-                        <li class="list-group-item">Zobrazení detailu pojištěného včetně pojištění&#10004</li>
-                        <li class="list-group-item">Zobrazení detailu pojištění&#10004</li>
-                        <li  class="list-group-item">Zobrazení seznamu pojištěných&#10004</li>
-                        <li  class="list-group-item">Odstranění pojištěného včetně všech jeho pojištění&#10004</li>
-                        <li  class="list-group-item">Odstranění pojištění&#10004</li>
-                        <li  class="list-group-item">Editace pojištěného&#10004</li>
-                        <li  class="list-group-item">Editace pojištění pojištěného&#10004</li>
-                        <li  class="list-group-item">Dané entity jsou uloženy v SQL databázi&#10004</li>
-                        <li  class="list-group-item">Aplikace je naprogramována podle dobrých praktit a je plně responzivní&#10004</li>
+                        <li class="list-group-item">Aplikace obsahuje kompletní správu (CRUD)<strong>pojištěných</strong>(např. "Jan Novák") a jejich <strong>pojištění</strong>(např. "pojištění bytu")&#10004
+                        </li>
+                        <li class="list-group-item">Vytvoření pojištěného&#10004
+                        </li>
+                        <li class="list-group-item">Vytvoření pojištění&#10004
+                        </li>
+                        <li class="list-group-item">Zobrazení detailu pojištěného včetně pojištění&#10004
+                        </li>
+                        <li class="list-group-item">Zobrazení detailu pojištění&#10004
+                        </li>
+                        <li  class="list-group-item">Zobrazení seznamu pojištěných&#10004
+                        </li>
+                        <li  class="list-group-item">Odstranění pojištěného včetně všech jeho pojištění&#10004
+                        </li>
+                        <li  class="list-group-item">Odstranění pojištění&#10004
+                        </li>
+                        <li  class="list-group-item">Editace pojištěného&#10004
+                        </li>
+                        <li  class="list-group-item">Editace pojištění pojištěného&#10004
+                        </li>
+                        <li  class="list-group-item">Dané entity jsou uloženy v SQL databázi&#10004
+                        </li>
+                        <li  class="list-group-item">Aplikace je naprogramována podle dobrých praktit a je plně responzivní&#10004
+                        </li>
                     </ul>
                 </div>
                 <div class="col">
                     <h4>Rozšířená varianta</h4>
                     <ul class="list-group">
-                        <li class="list-group-item disabled">Aplikace podporuje uživatelské role (pojištěný, administrátor) navrhni a implementuj, kdo vidí a může editovat jaká data<span class="red">&#10008</span></li>
-                        <li class="list-group-item disabled">Aplikace eviduje pojistné události pojištěných, rovněž pomoci kompletní správy (CRUD)<span class="red">&#10008</span></li>
+                        <li class="list-group-item">Aplikace podporuje uživatelské role (administrátor, vedoucí, pracovník)implementuj, administrátor CRUD, vedoucí CRU a pracovník CR&#10004
+                        </li>
+                        <li class="list-group-item disabled">Aplikace eviduje pojistné události pojištěných, rovněž pomoci kompletní správy (CRUD)<span class="red">&#10008</span>
+                        </li>
                     </ul>          
                 </div>
             </div>
@@ -112,8 +150,10 @@
                 <div class="col">
                     <h4>Expertní varianta</h4>
                     <ul>
-                        <li  class="list-group-item disabled">Aplikace podporuje rozlišení pojistníků(těch, kdo platí pojištění) a pojištěných(těch, na koho se pojištění vztahuje).<span class="red">&#10008</li>
-                        <li  class="list-group-item disabled">Aplikace generuje statistiky ve formě reportů<span class="red">&#10008</li>
+                        <li  class="list-group-item disabled">Aplikace podporuje rozlišení pojistníků(těch, kdo platí pojištění) a pojištěných(těch, na koho se pojištění vztahuje).<span class="red">&#10008</span>
+                        </li>
+                        <li  class="list-group-item disabled">Aplikace generuje statistiky ve formě reportů<span class="red">&#10008</span>
+                        </li>
                     </ul>  
                 </div>
             </div>
