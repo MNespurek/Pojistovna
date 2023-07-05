@@ -34,17 +34,18 @@
             <h1>Přihlášení</h1></div>
                 <p></p>
           <form action="/prihlasit" method="POST">
+            {{form.hidden_tag()}}
             <div class="container">
               <div class="row">
                 <div class="col-md-2 offset-md-5">
                   <div class="centered-form">
                     <div class="form-group">
                       <label for="email">Email:</label>
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Zadejte email">
+                        {{form.email(class="form-control")}}
                     </div>
                     <div class="form-group">
-                      <label for="heslo">Heslo:</label>
-                      <input type="password" class="form-control" name="heslo" id="heslo" placeholder="Zadejte heslo">
+                      <label for="password">Heslo:</label>
+                        {{form.password(class="form-control")}}
                     </div>
                   </div>
 
