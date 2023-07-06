@@ -10,80 +10,135 @@
 </head>
 <body>
     <header>
-      
-        <div class="container">
+		<div class="container">
             <div class="row">
-        <nav class="nav nav-pills nav-fill">
-            <div class="col-2">
-            <a class = "nav-link" href ="{{ url_for('index') }}">PojištěníApp</a>
+                <nav class="nav nav-pills nav-fill">
+                    <div class="col-2">
+                        <a class = "nav-link active" href ="{{ url_for('index') }}">PojištěníApp</a>
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link active" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a>
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('udalosti') }}">Události</a>
+                    </div>
+                    <div class="col-2">
+                        <a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a>
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a>
+                    </div>
+                    <div class="col">
+                        {% if current_user.is_authenticated %}
+                        <div class="list-group-item">{{ current_user.prijmeni }}
+                        <a href="{{ url_for('odhlasit') }}" class="list-group-item">Odhlásit</a>
+                        {% else %}
+                        <a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                        {% endif %}
+                    </div>
+                </nav>
             </div>
-            <div class="col"></div>
-            <div class="col"><a class = "nav-link active" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a></div>
-            <div class="col"><a class = "nav-link" href ="{{ url_for('pojisteni') }}">Pojištění</a></div>
-            <div class="col"><a class = "nav-link" href ="{{ url_for('udalosti') }}">Události</a></div>
-            <div class="col-2"><a class = "nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci...</a></div>
-            <div class="col"></div>
-            <div class="col"><a class = "nav-link" href="{{ url_for('registrace') }}">Registrace</a></div>
-            <div class="col"><a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a></div>
         </div>
-    </div>
-            
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" 
+                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('index') }}">App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('udalosti') }}">Události</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('oaplikaci') }}">O aplikaci</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('registrace') }}">Registrace</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if current_user.is_authenticated %}<span class="nav-link">{{current_user.prijmeni}}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('odhlasit') }}">Odhlásit</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
     <article>
-      <div class="zarovnani">
-        <h1>Nový pojištěnec</h1></div>
-            <p></p>
+        <div class="zarovnani">
+            <h1>Nový pojištěnec</h1>
+        </div>
         <form action="/add" method="POST">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6 offset-md-3">
-                <div class="centered-form">
-                  <div class="form-group">
-                    <label for="jmeno">Jméno:</label>
-                    <input type="text" class="form-control" name="jmeno" id="jmeno" placeholder="Zadejte jméno">
-                  </div>
-                  <div class="form-group">
-                    <label for="prijmeni">Příjmení:</label>
-                    <input type="text" class="form-control" name="prijmeni" id="prijmeni" placeholder="Zadejte příjmení">
-                  </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="centered-form">
+                            <div class="form-group">
+                                <label for="jmeno">Jméno:</label>
+                                <input type="text" class="form-control" name="jmeno" id="jmeno" placeholder="Zadejte jméno">
+                            </div>
+                            <div class="form-group">
+                                <label for="prijmeni">Příjmení:</label>
+                                <input type="text" class="form-control" name="prijmeni" id="prijmeni" placeholder="Zadejte příjmení">
+                            </div>
+                        </div>
+                        <div class="centered-form">
+                            <div class="form-group">
+                                <label for="telefon">Telefon:</label>
+                                <input type="text" class="form-control" name="telefon" id="telefon" placeholder="Zadejte telefon">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Zadejte email">
+                            </div>
+                        </div>
+                        <div class="centered-form">
+                            <div class="form-group">
+                                <label for="ulice">Ulice:</label>
+                                <input type="text" class="form-control" name="ulice" id="street" placeholder="Zadejte ulici">
+                            </div>
+                            <div class="form-group">
+                                <label for="mesto">Město:</label>
+                                <input type="text" class="form-control" name="mesto" id="mesto" placeholder="Zadejte město">
+                            </div>
+                        </div>
+                        <div class="centered-form">
+                            <div class="form-group full-width-group">
+                                <label for="psc">PSČ:</label>
+                                <input type="text" class="form-control" name="psc" id="psc" placeholder="Zadejte PSČ">
+                            </div>
+                        </div>
+                        <div class = "zarovnani">
+                            <button type="submit" class="btn btn-primary">Odeslat</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="centered-form">
-                  <div class="form-group">
-                    <label for="telefon">Telefon:</label>
-                    <input type="text" class="form-control" name="telefon" id="telefon" placeholder="Zadejte telefon">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Zadejte email">
-                  </div>
-                </div>
-                <div class="centered-form">
-                <div class="form-group">
-                    <label for="ulice">Ulice:</label>
-                    <input type="text" class="form-control" name="ulice" id="street" placeholder="Zadejte ulici">
-                  </div>
-                  <div class="form-group">
-                    <label for="mesto">Město:</label>
-                    <input type="text" class="form-control" name="mesto" id="mesto" placeholder="Zadejte město">
-                  </div>
-                  </div>
-                  <div class="centered-form">
-                  <div class="form-group full-width-group">
-                    <label for="psc">PSČ:</label>
-                    <input type="text" class="form-control" name="psc" id="psc" placeholder="Zadejte PSČ">
-                  </div>
-                  
-                </div>
-                  <div class = "zarovnani">
-                  <button type="submit" class="btn btn-primary">Odeslat</button>
-                </div>
-              </div>
             </div>
-          </div>
         </form>
-
-</article>
-
+    </article>
 </body>
 </html>
-

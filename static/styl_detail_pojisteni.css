@@ -4,6 +4,27 @@
     gap: 100px;
     align-items: center;
 }
+
+.nav {
+    margin-top: 5px;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+.nav .list-group-item:last-child {
+    color: RGB(10, 88, 202);
+    font-size: 1rem;
+    margin-top: 7px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.nav a.list-group-item:last-child {
+    margin: 0px;
+}
+
 .editovat {
     background-color: goldenrod;
     color: white;
@@ -121,7 +142,6 @@ body {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     gap: 30px;
-    
 
 }
 tr, th, td {
@@ -133,19 +153,26 @@ tr, th, td {
     display: none;
 }
 
+.container.text-center {
+    margin-bottom: 20px;
+    
+}
+
 @media (max-width: 990px) {
     header .container {
         display: none;
     
     }
+
     .navbar {
         display: flex;
         background: rgb(238, 232, 232);
-    header {
-        width: 400px;
-    }    
-
     }
+
+    .nav-link:focus, .nav-link:hover {
+        color: rgb(10, 88, 202);
+    }
+
     nav ul {
         gap: 0px;
         
@@ -181,7 +208,16 @@ tr, th, td {
     }
 }
 @media (max-width: 470px) {
-        .editovat {
+    .obrazek_udaje {
+        gap: 30px;
+    }
+    
+    h5 a {
+        padding: 8px;
+        font-size: 0.8em;
+    }
+
+    .editovat {
           margin-bottom: 10px;
           margin-right: 0px;
           display: block;
@@ -193,15 +229,12 @@ tr, th, td {
             height: 8em;
         }
         .table{
-            height: 400px;
+            height: 300px;
         }
         .tbody {
-            height: 450px;
+            height: 350px;
         }
         
     }      
 
-    .container.text-center {
-        margin-bottom: 20px;
-        
-    }
+    

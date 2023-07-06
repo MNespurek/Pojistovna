@@ -15,12 +15,12 @@
             <div class="row">
                 <nav class="nav nav-pills nav-fill">
                     <div class="col-2">
-                        <a class = "nav-link active" href ="{{ url_for('index') }}">PojištěníApp</a>
+                        <a class = "nav-link active" aria-current="page" href ="{{ url_for('index') }}">PojištěníApp</a>
                     </div>
                     <div class="col">
                     </div>
                     <div class="col">
-                        <a class = "nav-link" aria-current="page" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
+                        <a class = "nav-link" href="{{ url_for('pojistenci') }}">Pojištěnci</a>
                     </div>
                     <div class="col">
                         <a class = "nav-link" href="{{ url_for('pojisteni') }}">Pojištění</a>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col">
                         {% if current_user.is_authenticated %}
-                        <div class="list-group-item">{{ current_user.id_role }} {{ current_user.prijmeni }}
+                        <div class="list-group-item">{{ current_user.prijmeni }}
                         <a href="{{ url_for('odhlasit') }}" class="list-group-item">Odhlásit</a>
                         {% else %}
                         <a class = "nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
@@ -74,10 +74,7 @@
                             <a class="nav-link" href="{{ url_for('registrace') }}">Registrace</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('prihlasit') }}">Přihlásit</a>
-                        </li>
-                        <li class="nav-item">
-                            {% if current_user.is_authenticated %}<span class="nav-link">{{ current_user.jmeno }} {{current_user.prijmeni}}</span>
+                            {% if current_user.is_authenticated %}<span class="nav-link">{{current_user.prijmeni}}</span>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('odhlasit') }}">Odhlásit</a>

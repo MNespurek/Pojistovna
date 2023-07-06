@@ -10,6 +10,22 @@ header {
     margin-top: 5px;
 }
 
+.nav-link {
+    text-align: center;
+}
+
+.nav .list-group-item:last-child {
+    color: RGB(10, 88, 202);
+    font-size: 1rem;
+    margin-top: 7px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.nav a.list-group-item:last-child {
+    margin: 0px;
+}
+
 h5 {
     font-family: Arial;
     color: white;
@@ -128,23 +144,36 @@ article .row {
     background-color: var(--bs-list-group-disabled-bg);
     
 }
+
+.container.text-center {
+    margin-bottom: 20px;
+    
+}
+
 @media (max-width: 990px) {
     header .container {
         display: none;
-    
     }
+
+    
     .navbar {
         display: flex;
         background: rgb(238, 232, 232);
 
     }
+    
+    .nav-link:focus, .nav-link:hover {
+        color: rgb(10, 88, 202);
+    }
+    
     nav ul {
         gap: 0px;
-        
     }
+
     .bg-body-tertiary {
         --bs-tertiary-bg-rgb: 238,232,232;
     }
+
     .navbar-nav {
         --bs-nav-link-color: rgb(13 110 253 / 65%);
         --bs-nav-link-hover-color: rgb (10, 88, 202);
@@ -153,10 +182,10 @@ article .row {
     .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
         color: rgb(13 110 253);
     }
+
     article {
         margin-left: 0px;
         }
-
     }
     
 @media (max-width: 470px) {
@@ -171,16 +200,6 @@ article .row {
         .td {
             height: 8em;
         }
-        .table{
-            height: 400px;
-        }
-        .tbody {
-            height: 450px;
-        }
+        
         
     }      
-
-    .container.text-center {
-        margin-bottom: 20px;
-        
-    }

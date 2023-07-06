@@ -4,6 +4,27 @@
     gap: 100px;
     align-items: center;
 }
+
+.nav {
+    margin-top: 5px;
+}
+
+.nav-link {
+    text-align: center;
+}
+
+.nav .list-group-item:last-child {
+    color: RGB(10, 88, 202);
+    font-size: 1rem;
+    margin-top: 7px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.nav a.list-group-item:last-child {
+    margin: 0px;
+}
+
 .editovat {
     background-color: goldenrod;
     color: white;
@@ -12,9 +33,11 @@
     border-radius: 15px;
     text-decoration: none;
 }
+
 .editovat:hover {
 background-color: rgb(105, 80, 16);
 }
+
 .odstranit {
     background-color: red;
     color: white;
@@ -22,9 +45,10 @@ background-color: rgb(105, 80, 16);
     border-radius: 15px;
     text-decoration: none;
 }
+
 .odstranit:hover {
     background-color:rgb(114, 3, 3);
-    }
+}
 
 .editovat_klapky:hover {
 background-color: rgb(105, 80, 16);
@@ -37,9 +61,10 @@ background-color: rgb(105, 80, 16);
     border-radius: 15px;
     width: max-content;
 }
+
 .odstranit_klapky:hover {
     background-color:rgb(114, 3, 3);
-    }
+}
 
 .odstranit_klapky {
     background-color: red;
@@ -47,7 +72,6 @@ background-color: rgb(105, 80, 16);
     padding: 15px;
     border-radius: 15px;
     width: max-content;
- 
 }
 
 header {
@@ -74,12 +98,13 @@ h5 {
     color: white;
     padding: 15px;
     border-radius: 15px;
-    
     width: max-content;
 }
+
 .nova_klapka:hover {
     background-color: rgb(7, 7, 80);
 }
+
 h5 a {
     text-decoration: none;
     color: white;
@@ -92,12 +117,6 @@ article {
     width: 100%;
     margin-left: 10px;
     height: 380px;
-  
-}
-
-body {
-    padding: 0px;
-    margin: 0px;
 }
 
 .table {
@@ -115,9 +134,8 @@ body {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     gap: 30px;
-    
-
 }
+
 tr, th, td {
     text-align: center;
     height: 4em;
@@ -127,26 +145,28 @@ tr, th, td {
     display: none;
 }
 
+.container.text-center {
+    margin-bottom: 20px;
+}
+
 @media (max-width: 990px) {
     header .container {
         display: none;
-    
     }
+
     .navbar {
         display: flex;
         background: rgb(238, 232, 232);
-    header {
-        width: 400px;
-    }    
-
     }
+
     nav ul {
         gap: 0px;
-        
     }
+
     .bg-body-tertiary {
         --bs-tertiary-bg-rgb: 238,232,232;
     }
+
     .navbar-nav {
         --bs-nav-link-color: rgb(13 110 253 / 65%);
         --bs-nav-link-hover-color: rgb (10, 88, 202);
@@ -155,47 +175,57 @@ tr, th, td {
     .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
         color: rgb(13 110 253);
     }
+
+    .nav-link:focus, .nav-link:hover {
+        color: rgb(10, 88, 202);
+    }
+
     article {
         margin-left: 0px;
-        }
-
+    }
     }
     
 @media (max-width: 720px) {
-    h5 {
-        font-size: 0.8rem;
-    }
     .odstranit_klapky, .nova_klapka, .editovat_klapky {
         display: flex;
         align-items: center;
         padding: 5px;
+        margin: 5px;
     }
+
     .zarovnani {
         gap: 2px;
     }
-}
-@media (max-width: 470px) {
-        .editovat {
-          margin-bottom: 10px;
-          margin-right: 0px;
-          display: block;
-        }
-        .odstranit {
-            display: block;
-        }
-        .td {
-            height: 8em;
-        }
-        .table{
-            height: 400px;
-        }
-        .tbody {
-            height: 450px;
-        }
-        
-    }      
 
-    .container.text-center {
-        margin-bottom: 20px;
-        
+    .smazat {
+        display: none;
+    }
+
+    h5 a {
+        padding: 10px;
+    }    
+    }
+
+    @media (max-width: 470px) {
+    .editovat {
+        margin-bottom: 10px;
+        margin-right: 0px;
+        display: block;
+    }
+
+    .odstranit {
+        display: block;
+    }
+    
+    h5 a {
+        font-size: 0.8rem;
+    }
+
+    .table{
+        height: 300px;
+    }
+
+    .tbody {
+        height: 350px;
+    }
     }

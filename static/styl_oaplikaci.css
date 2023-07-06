@@ -23,10 +23,8 @@ header {
     
 }
 
-
 .nav a.list-group-item:last-child {
     margin: 0px;
-    
 }
 
 h1, h4 {
@@ -64,10 +62,6 @@ article {
     vertical-align: middle;
 }
 
-.red {
-    color: red;
-}
-
 .centrovany {
     display: flex;
     justify-content: center;
@@ -84,33 +78,18 @@ article {
     margin-inline-end: 0px;
 }
 
-tr, th, td {
-    text-align: center;
-    height: 4em;
-}
-
 .navbar {
     display: none;
-}
-
-.col-4.offset-4 {
-    padding: 15px;
-    border: 1px solid rgb(222 226 230);
-    border-color:rgb(222 226 230);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-article .col, .col-5  {
-    padding: 15px;
-    border: 1px solid rgb(222 226 230);
-    margin: 15px;
-    border-color:rgb(222 226 230);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .list-group-item {
     text-align: left;
 }
+
+.container.text-center {
+    margin-bottom: 20px;
+}
+
 
 
 @media (max-width: 990px) {
@@ -152,29 +131,9 @@ article .col, .col-5  {
         text-align: left;
     }
 
-    .col-4.offset-4 {
-        padding: 0px;
-        border: 1px solid rgb(222 226 230);
-        border-color:rgb(222 226 230);
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-}    
+    }    
 
 @media (max-width: 470px) {
-    .editovat {
-        margin-bottom: 10px;
-        margin-right: 0px;
-        display: block;
-    }
-    
-    .odstranit {
-        display: block;
-    }
-    
-    .td {
-        height: 8em;
-    }
-    
     .table {
         height: 400px;
     }
@@ -182,8 +141,4 @@ article .col, .col-5  {
     .tbody {
         height: 450px;
     }
-        
-    .container.text-center {
-        margin-bottom: 20px;
     }
-}

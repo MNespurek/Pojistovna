@@ -10,37 +10,34 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, cur
 from flask_principal import Principal, Permission, RoleNeed, UserNeed, identity_loaded, Identity, ActionNeed, AnonymousIdentity, identity_changed, identity_loaded
 from datetime import datetime
 
-
 app = Flask(__name__)
 #vytváří se databáze
 app.config['SECRET_KEY'] = 'tajny_klic_pro_podepsani'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_pojistovna.db'
 db = SQLAlchemy(app)
-
+#objekt pro logování
 login = LoginManager()
 login.init_app(app)
+
+#odkaz na stránku, pokud není uživatel přihlášený
 login.login_view = 'nutna_registrace'
+
+#inicializace rozšíření Principal
 principals = Principal(app)
 
+#definování uživatelů aplikace
 pracovnik = Permission(RoleNeed('pracovnik'))
 vedouci = Permission(RoleNeed('vedouci'))
 administrator = Permission(RoleNeed('administrator'))
 
+#kontrola identity uživatele - id_uzivatel a id_role
 @identity_loaded.connect_via(app)
 def on_identity_loaded(sender, identity):
-    print("volána funkce identity")
     identity.user = current_user
-    
     if hasattr(current_user, 'id_uzivatel'):
-        print("volána funkce pro porovnání uživetele")
         identity.provides.add(UserNeed(current_user.id_uzivatel))
-        print("hotovo")
-
+    
     if hasattr(current_user, 'id_role'):
-        print("druhá možnost")
-        print(current_user)
-        print(current_user.id_role)
-        print(current_user.role.muze_vytvaret)
         if current_user.id_role == 1:
             identity.provides.add(RoleNeed('pracovnik'))
             print("pracovník")
@@ -84,13 +81,13 @@ class Uzivatel(UserMixin, db.Model):
     email = db.Column(db.String)
     id_role = db.Column(db.Integer, db.ForeignKey('role.id_role'))
     
-    
     def nastav_heslo(self, heslo):
         self.hash_heslo = generate_password_hash(heslo)
 
     def kontrola_hesla(self, heslo):
         return check_password_hash(self.hash_heslo, heslo)
     
+    #získání id_uzivatele
     def get_id(self):
         return str(self.id_uzivatel)
 
@@ -122,12 +119,12 @@ def muze_upravit():
 def muze_mazat():
     return current_user.role.muze_mazat
 
-#třída pro logování
+#kontrola logování
 @login.user_loader
 def load_user(id_uzivatel):
-    print("volán uživatel s id_uzivatel")
     return db.session.get(Uzivatel, id_uzivatel)
 
+#definování příhlášení uživatele
 class LoginForm(FlaskForm):
     email = StringField(validators=[DataRequired(), Email()], render_kw={"placeholder": "Email"})
     password = PasswordField(validators=[DataRequired()], render_kw={"placeholder": "Heslo"})
@@ -141,7 +138,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Email"})
     submit = SubmitField('registrovat')
 
-#kontrola rolí, zda jsou v databázi
+#kontrola rolí, zda jsou v databázi, pokud ne, vytvoří se
 def kontrola_roli():
     role = Role.query.all()
     if not role:
@@ -152,8 +149,6 @@ def kontrola_roli():
         db.session.add(vedouci_role)
         db.session.add(administrator_role)
         db.session.commit()
-        
-
 
 #hlavní stránka
 @app.route('/')
@@ -207,16 +202,11 @@ def add():
 @login_required
 def smazat_pojistence(id_pojistenec):
     if muze_mazat():
-        print("Metoda smazání je volána")
         pojistenec = db.session.get(Pojistenci, id_pojistenec)
         db.session.delete(pojistenec)
         db.session.commit()
         return redirect('/pojistenec/smazani')
     return render_template('/ostatni/opravneni.html')
-
-# @app.errorhandler(403)
-# def access_forbidden(error):
-#     return render_template('ostatni/opravneni.html')
 
 #stránka, kde je potvrzeno smazání pojištěnce
 @app.route('/pojistenec/smazani')
@@ -229,11 +219,9 @@ def smazani():
 @login_required
 def editace(id_pojistenec):
     if muze_upravit():
-        print("volaná fce editace")
         pojistenec = db.session.get(Pojistenci, id_pojistenec)
         if pojistenec:
             if request.method == 'POST':
-                print("metoda Post volána")
                 pojistenec.jmeno = request.form['jmeno']
                 pojistenec.prijmeni = request.form['prijmeni']
                 pojistenec.ulice = request.form['ulice']
@@ -242,13 +230,10 @@ def editace(id_pojistenec):
                 pojistenec.mesto = request.form['mesto']
                 pojistenec.psc = request.form['psc']
                 db.session.commit()
-                print("data uložena do databáze")
                 return redirect('/pojistenec/ulozeni')
             else:
-                print("volána fce editace data nahrána")
                 return render_template('pojistenec/editace_pojistenec.html', pojistenec = pojistenec)
-        else:
-            return "Pojištěnec neexistuje"
+        
     return render_template('/ostatni/opravneni.html')
 
 #stránka, kde je potvrzeno uložení/editace pojištěnce
@@ -284,10 +269,8 @@ def pojisteni():
     pojisteni = Pojisteni.query.all()
     for poj in pojisteni:
         pojistenec = db.session.get(Pojistenci, poj.id_pojistenec)
-        
         poj.jmeno = pojistenec.jmeno
         poj.prijmeni = pojistenec.prijmeni
-        print(poj.nazev)
         seznam_pojisteni.append(poj)
         
     page = int(request.args.get(get_page_parameter(), 1))
@@ -299,13 +282,14 @@ def pojisteni():
     zobrazeni_pojisteni = seznam_pojisteni[start:end]
     return render_template('/pojisteni/pojisteni.html', seznam_pojisteni = zobrazeni_pojisteni, pojisteni = pojisteni, pagination = pagination)
 
+#vytváření nového pojištění
 @app.route('/nove_pojisteni/<int:id_pojistenec>')
 @login_required
 def nove_pojisteni(id_pojistenec):
-    print("volána stránka nové pojištění")
-    pojistenec = db.session.get(Pojistenci, id_pojistenec)
+    ojistenec = db.session.get(Pojistenci, id_pojistenec)
     return render_template('/pojisteni/nove_pojisteni.html', pojistenec = pojistenec, id_pojistenec = pojistenec.id_pojistenec)
 
+#nové pojištění
 @app.route('/add_pojisteni/<int:id_pojistenec>', methods = ['POST'])
 @login_required
 def add_pojisteni(id_pojistenec):
@@ -318,30 +302,24 @@ def add_pojisteni(id_pojistenec):
     pojisteni = Pojisteni(id_pojistenec = id_pojistenec, nazev = nazev, castka = castka, predmet = predmet, platnost_od = platnost_od, platnost_do = platnost_do)
     db.session.add(pojisteni)
     db.session.commit()
-    print("data byla vložena do databáze")
     return redirect ('/pojistenec/ulozeni')
 
+#detail pojištění
 @app.route('/pojisteni/detail_pojisteni/<int:id_pojisteni>')
 @login_required
 def detail_pojisteni(id_pojisteni):
-    print("volána fce detail pojištění")
     pojisteni = db.session.get(Pojisteni, id_pojisteni)
     urci_obrazek = pojisteni.nazev
     obrazek = verze_obrazku(urci_obrazek)
-    print(obrazek)
-    print(pojisteni.nazev)
-    
     return render_template('/pojisteni/detail_pojisteni.html', pojisteni = pojisteni, obrazek = obrazek)
 
+#vybrání obrázku dle zadaných kritérií
 def verze_obrazku(urci_obrazek):
     if urci_obrazek == "pojištění domu":
-        print("vybrán dům")
         obrazek = "../../static/obrazky/dum.png"
     elif urci_obrazek == "pojištění auta":
-        print("vybráno auto")
         obrazek = "../../static/obrazky/auto.png"
     elif urci_obrazek == "pojištění chaty":
-        print("vybrána chata")
         obrazek = "../../static/obrazky/chata.png"
     return obrazek
 
@@ -350,11 +328,9 @@ def verze_obrazku(urci_obrazek):
 @login_required
 @administrator.require()
 def smazat_pojisteni(id_pojisteni):
-    print("Metoda smazání je volána")
     pojisteni = db.session.get(Pojisteni, id_pojisteni)
     db.session.delete(pojisteni)
     db.session.commit()
-    print("data byla smazána z databáze")
     return redirect('/pojistenec/smazani')
 
 #editace pojištěnce
@@ -362,7 +338,6 @@ def smazat_pojisteni(id_pojisteni):
 @login_required
 def editace_pojisteni(id_pojisteni):
     if muze_upravit():
-        print("volána fce editace pojištění")
         pojisteni = db.session.get(Pojisteni, id_pojisteni)
         if pojisteni:
             if request.method == 'POST':
@@ -372,15 +347,12 @@ def editace_pojisteni(id_pojisteni):
                 pojisteni.platnost_od = request.form['platnost_od']
                 pojisteni.platnost_do = request.form['platnost_do']
                 db.session.commit()
-                print("data uložena do databáze")
                 return redirect('/pojistenec/ulozeni')
             else:
-                print("volána fce editace pojištění nahrání dat")
                 return render_template('/pojisteni/editace_pojisteni.html', pojisteni = pojisteni)
         else:
             return "Pojištění neexistuje"
     return render_template('/ostatni/opravneni.html')
-
 
 #převod na stránku události
 @app.route('/udalosti.html')
@@ -390,29 +362,22 @@ def udalosti():
 
 #převod na stránku o aplikaci
 @app.route('/oaplikaci.html')
-
 def oaplikaci():
     return render_template('/ostatni/oaplikaci.html')
 
-
+#převod na stránku pro registraci
 @app.route('/nutna_registrace.html')
 def nutna_registrace():
     return render_template('/ostatni/nutna_registrace.html')
-
 
 #přidat novou registraci
 @app.route('/registrace', methods = ['GET', 'POST'])
 def registrace():
     form = RegistrationForm()
-    print(form.email)
     if form.validate_on_submit():
         email_databaze = form.email.data
-        print(email_databaze)
-    
         generovany_hash = generate_password_hash(form.heslo.data)
         uzivatel_email = db.session.query(Uzivatel).filter_by(email = email_databaze).first()
-        print(uzivatel_email)
-        print(email_databaze)
         if uzivatel_email:
             return render_template('/ostatni/registrace_stejny_email.html', form=form)
         else:
@@ -423,55 +388,32 @@ def registrace():
     else:
         return render_template('ostatni/registrace.html', form=form) 
 
-
 #přihlášení
 @app.route('/prihlasit', methods = ['GET', 'POST'])
 def prihlasit():
     form = LoginForm()
-    
     if form.validate_on_submit():
         uzivatel = Uzivatel.query.filter_by(email=form.email.data).first()
-        (print("jsem za uživatelem"))
-        print(form.password.data)
-        registrace_hash = generate_password_hash(form.password.data)
-        print(registrace_hash)
-        print(uzivatel.hash_heslo)
         if uzivatel and uzivatel.kontrola_hesla(form.password.data):
             login_user(uzivatel)
-            print("jsem zalogovaný, chybí změna identity")
             identity_changed.send(current_app._get_current_object(), identity=Identity(uzivatel.id_uzivatel))
-            print("identita změněna")
             return redirect(url_for('index'))
         else:
-            print("neplatné přihlašovací údaje")
-            flash('Neplatné přihlšovací údaje', "error")
-    
+            return render_template ('/ostatni/prihlasit_heslo.html', form=form)
     return render_template('/ostatni/prihlasit.html', form=form)
 
 @app.route('/odhlasit')
 def odhlasit():
     print("volána funkce pro odhlášení")
     logout_user()
-
     session.pop('identity.name', None)
     session.pop('identity.auth_type', None)
-
     with app.app_context():
         identity_changed.send(app, identity=AnonymousIdentity())
-        print("identita změněna")
     return redirect(url_for('index'))
-
-# @app.errorhandler(403)
-# def access_forbidden(error):
-#     return render_template ('ostatni/opravneni.html')
-
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         kontrola_roli()
-            
-
-    app.run(debug=True)
-    
-
+    app.run(debug=True)   
