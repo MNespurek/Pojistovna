@@ -40,15 +40,11 @@ def on_identity_loaded(sender, identity):
     if hasattr(current_user, 'id_role'):
         if current_user.id_role == 1:
             identity.provides.add(RoleNeed('pracovnik'))
-            print("pracovník")
         if current_user.id_role == 2:
             identity.provides.add(RoleNeed('vedouci'))
-            print("vedoucí")
         if current_user.id_role == 3:
             identity.provides.add(RoleNeed('administrator'))
-            print("administrator")
-            print(current_user.jmeno)
-
+        
 #tabulka pojištěnci
 class Pojistenci(db.Model):
     
@@ -163,7 +159,6 @@ def pojistenci():
         pojistenci = Pojistenci.query.all()
         for pojistenec in pojistenci:
             seznam_pojistencu.append(pojistenec)
-            print(pojistenec.jmeno)
         page = int(request.args.get(get_page_parameter(), 1))
         per_page = 3
         total = len(seznam_pojistencu)
@@ -184,7 +179,6 @@ def novy_pojistenec():
 @app.route('/add', methods=['POST'])
 @login_required
 def add():
-    print("metoda add je volána")
     jmeno = request.form['jmeno']
     prijmeni = request.form['prijmeni']
     ulice = request.form['ulice']
@@ -286,14 +280,13 @@ def pojisteni():
 @app.route('/nove_pojisteni/<int:id_pojistenec>')
 @login_required
 def nove_pojisteni(id_pojistenec):
-    ojistenec = db.session.get(Pojistenci, id_pojistenec)
+    pojistenec = db.session.get(Pojistenci, id_pojistenec)
     return render_template('/pojisteni/nove_pojisteni.html', pojistenec = pojistenec, id_pojistenec = pojistenec.id_pojistenec)
 
 #nové pojištění
 @app.route('/add_pojisteni/<int:id_pojistenec>', methods = ['POST'])
 @login_required
 def add_pojisteni(id_pojistenec):
-    print(id_pojistenec)
     nazev = request.form['nazev']
     castka = request.form['castka']
     predmet = request.form['predmet']
@@ -404,7 +397,6 @@ def prihlasit():
 
 @app.route('/odhlasit')
 def odhlasit():
-    print("volána funkce pro odhlášení")
     logout_user()
     session.pop('identity.name', None)
     session.pop('identity.auth_type', None)
