@@ -13,7 +13,9 @@ from datetime import datetime
 app = Flask(__name__)
 #vytváří se databáze
 app.config['SECRET_KEY'] = 'tajny_klic_pro_podepsani'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:admin@localhost/db_pojistovna'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:admin@localhost/db_pojistovna'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://default:Y1ZPNi6qBner@ep-billowing-grass-878753.us-east-1.postgres.vercel-storage.com:5432/verceldb'
+# psql "postgres://default:Y1ZPNi6qBner@ep-billowing-grass-878753.us-east-1.postgres.vercel-storage.com:5432/verceldb"
 db = SQLAlchemy(app)
 #objekt pro logování
 login = LoginManager()
