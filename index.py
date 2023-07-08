@@ -13,7 +13,7 @@ from datetime import datetime
 app = Flask(__name__)
 #vytváří se databáze
 app.config['SECRET_KEY'] = 'tajny_klic_pro_podepsani'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_pojistovna.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:admin@localhost/db_pojistovna'
 db = SQLAlchemy(app)
 #objekt pro logování
 login = LoginManager()
@@ -319,12 +319,14 @@ def verze_obrazku(urci_obrazek):
 #smazání pojištěnce dle jeho ID
 @app.route('/pojisteni/smazani/<int:id_pojisteni>')
 @login_required
-@administrator.require()
+
 def smazat_pojisteni(id_pojisteni):
-    pojisteni = db.session.get(Pojisteni, id_pojisteni)
-    db.session.delete(pojisteni)
-    db.session.commit()
-    return redirect('/pojistenec/smazani')
+    if muze_mazat():
+        pojisteni = db.session.get(Pojisteni, id_pojisteni)
+        db.session.delete(pojisteni)
+        db.session.commit()
+        return redirect('/pojistenec/smazani')
+    return render_template('/ostatni/opravneni.html')
 
 #editace pojištěnce
 @app.route('/pojisteni/editace_pojisteni/<int:id_pojisteni>', methods=['GET', 'POST'])
